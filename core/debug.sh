@@ -5,6 +5,11 @@ xelab -debug typical test_top -s test_top.sim
 xsim --runall test_top.sim
 rm -rf *
 
+xvlog ../src/test_fpu.v ../src/core_fpu.v
+xelab -debug typical test_fpu -s test_fpu.sim
+xsim --runall test_fpu.sim
+rm -rf *
+
 xvlog ../src/test_decode.v ../src/core_decode.v
 xelab -debug typical test_decode -s test_decode.sim
 xsim --runall test_decode.sim

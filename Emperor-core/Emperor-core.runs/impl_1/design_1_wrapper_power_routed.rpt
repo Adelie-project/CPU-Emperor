@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-| Date             : Wed Dec  6 17:58:49 2017
+| Date             : Wed Dec  6 21:08:39 2017
 | Host             : ispc2016 running 64-bit Ubuntu 14.04.5 LTS
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 | Design           : design_1_wrapper
@@ -30,9 +30,9 @@ Table of Contents
 ----------
 
 +--------------------------+--------+
-| Total On-Chip Power (W)  | 0.821  |
-| Dynamic (W)              | 0.332  |
-| Device Static (W)        | 0.488  |
+| Total On-Chip Power (W)  | 0.825  |
+| Dynamic (W)              | 0.336  |
+| Device Static (W)        | 0.489  |
 | Effective TJA (C/W)      | 1.4    |
 | Max Ambient (C)          | 98.8   |
 | Junction Temperature (C) | 26.2   |
@@ -49,21 +49,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.043 |        5 |       --- |             --- |
-| CLB Logic               |     0.014 |    18193 |       --- |             --- |
-|   LUT as Logic          |     0.010 |     7596 |    242400 |            3.13 |
-|   Register              |     0.002 |     7103 |    484800 |            1.47 |
+| Clocks                  |     0.045 |        5 |       --- |             --- |
+| CLB Logic               |     0.016 |    18613 |       --- |             --- |
+|   LUT as Logic          |     0.011 |     7600 |    242400 |            3.14 |
+|   Register              |     0.002 |     7497 |    484800 |            1.55 |
 |   LUT as Shift Register |     0.001 |      140 |    112800 |            0.12 |
 |   CARRY8                |    <0.001 |      336 |     30300 |            1.11 |
-|   F7/F8 Muxes           |    <0.001 |      895 |    242400 |            0.37 |
-|   Others                |     0.000 |     1355 |       --- |             --- |
-| Signals                 |     0.014 |    14806 |       --- |             --- |
-| Block RAM               |     0.144 |      419 |       600 |           69.83 |
+|   F7/F8 Muxes           |    <0.001 |      868 |    242400 |            0.36 |
+|   Others                |     0.000 |     1391 |       --- |             --- |
+| Signals                 |     0.018 |    15255 |       --- |             --- |
+| Block RAM               |     0.140 |    426.5 |       600 |           71.08 |
 | MMCM                    |     0.114 |        1 |        10 |           10.00 |
 | DSPs                    |    <0.001 |        2 |      1920 |            0.10 |
 | I/O                     |     0.003 |        5 |       520 |            0.96 |
-| Static Power            |     0.488 |          |           |                 |
-| Total                   |     0.821 |          |           |                 |
+| Static Power            |     0.489 |          |           |                 |
+| Total                   |     0.825 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +------------+-------------+-----------+-------------+------------+
 | Source     | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +------------+-------------+-----------+-------------+------------+
-| Vccint     |       0.950 |     0.375 |       0.226 |      0.149 |
+| Vccint     |       0.950 |     0.379 |       0.230 |      0.149 |
 | Vccaux     |       1.800 |     0.159 |       0.063 |      0.096 |
 | Vccaux_io  |       1.800 |     0.066 |       0.001 |      0.065 |
 | Vccint_io  |       0.950 |     0.017 |       0.001 |      0.016 |
@@ -84,7 +84,7 @@ Table of Contents
 | Vcco135    |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12     |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vcco10     |       1.000 |     0.000 |       0.000 |      0.000 |
-| Vccbram    |       0.950 |     0.020 |       0.001 |      0.018 |
+| Vccbram    |       0.950 |     0.019 |       0.001 |      0.019 |
 | MGTAVcc    |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt    |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux  |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -150,8 +150,8 @@ Table of Contents
 +-----------------------------------------------------------------------------+-----------+
 | Name                                                                        | Power (W) |
 +-----------------------------------------------------------------------------+-----------+
-| design_1_wrapper                                                            |     0.332 |
-|   design_1_i                                                                |     0.332 |
+| design_1_wrapper                                                            |     0.336 |
+|   design_1_i                                                                |     0.336 |
 |     axi_uartlite_0                                                          |    <0.001 |
 |       U0                                                                    |    <0.001 |
 |         AXI_LITE_IPIF_I                                                     |    <0.001 |
@@ -174,23 +174,23 @@ Table of Contents
 |               I_SRL_FIFO_RBU_F                                              |    <0.001 |
 |                 CNTR_INCR_DECR_ADDN_F_I                                     |    <0.001 |
 |                 DYNSHREG_F_I                                                |    <0.001 |
-|     blk_mem_gen_0                                                           |     0.023 |
-|       U0                                                                    |     0.023 |
-|         inst_blk_mem_gen                                                    |     0.023 |
-|           gnbram.gnativebmg.native_blk_mem_gen                              |     0.023 |
-|             valid.cstr                                                      |     0.023 |
-|               bindec_a.bindec_inst_a                                        |     0.000 |
+|     blk_mem_gen_0                                                           |     0.019 |
+|       U0                                                                    |     0.019 |
+|         inst_blk_mem_gen                                                    |     0.019 |
+|           gnbram.gnativebmg.native_blk_mem_gen                              |     0.019 |
+|             valid.cstr                                                      |     0.019 |
+|               bindec_a.bindec_inst_a                                        |    <0.001 |
 |               has_mux_a.A                                                   |    <0.001 |
-|               ramloop[0].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
+|               ramloop[0].ram.r                                              |     0.001 |
+|                 prim_init.ram                                               |     0.001 |
 |               ramloop[10].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[11].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[12].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
-|               ramloop[13].ram.r                                             |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
+|               ramloop[13].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
 |               ramloop[14].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[15].ram.r                                             |    <0.001 |
@@ -203,12 +203,12 @@ Table of Contents
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[19].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
-|               ramloop[1].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
+|               ramloop[1].ram.r                                              |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
 |               ramloop[20].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
-|               ramloop[21].ram.r                                             |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
+|               ramloop[21].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
 |               ramloop[22].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[23].ram.r                                             |    <0.001 |
@@ -223,28 +223,44 @@ Table of Contents
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[28].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
-|               ramloop[2].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
-|               ramloop[3].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
-|               ramloop[4].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
-|               ramloop[5].ram.r                                              |     0.002 |
-|                 prim_init.ram                                               |     0.002 |
-|               ramloop[6].ram.r                                              |    <0.001 |
+|               ramloop[29].ram.r                                             |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
+|               ramloop[2].ram.r                                              |     0.001 |
+|                 prim_init.ram                                               |     0.001 |
+|               ramloop[30].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[31].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[32].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[33].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[34].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[35].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[36].ram.r                                             |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[3].ram.r                                              |    <0.001 |
+|                 prim_init.ram                                               |    <0.001 |
+|               ramloop[4].ram.r                                              |     0.001 |
+|                 prim_init.ram                                               |     0.001 |
+|               ramloop[5].ram.r                                              |     0.001 |
+|                 prim_init.ram                                               |     0.001 |
+|               ramloop[6].ram.r                                              |     0.001 |
+|                 prim_init.ram                                               |     0.001 |
 |               ramloop[7].ram.r                                              |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[8].ram.r                                              |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
 |               ramloop[9].ram.r                                              |    <0.001 |
 |                 prim_init.ram                                               |    <0.001 |
-|     blk_mem_gen_1                                                           |     0.124 |
-|       U0                                                                    |     0.124 |
-|         inst_blk_mem_gen                                                    |     0.124 |
-|           gnbram.gnativebmg.native_blk_mem_gen                              |     0.124 |
-|             valid.cstr                                                      |     0.124 |
-|               has_mux_a.A                                                   |    <0.001 |
+|     blk_mem_gen_1                                                           |     0.125 |
+|       U0                                                                    |     0.125 |
+|         inst_blk_mem_gen                                                    |     0.125 |
+|           gnbram.gnativebmg.native_blk_mem_gen                              |     0.125 |
+|             valid.cstr                                                      |     0.125 |
+|               has_mux_a.A                                                   |     0.002 |
 |               ramloop[0].ram.r                                              |     0.002 |
 |                 prim_noinit.ram                                             |     0.002 |
 |               ramloop[100].ram.r                                            |    <0.001 |
@@ -970,11 +986,13 @@ Table of Contents
 |     clk_wiz_0                                                               |     0.119 |
 |       inst                                                                  |     0.119 |
 |         clkin1_ibufds                                                       |     0.003 |
-|     core_top_0                                                              |     0.021 |
-|       inst                                                                  |     0.021 |
+|     core_fpu_0                                                              |     0.002 |
+|       inst                                                                  |     0.002 |
+|     core_top_0                                                              |     0.020 |
+|       inst                                                                  |     0.020 |
 |         u_core_alu                                                          |     0.003 |
-|         u_core_decode                                                       |     0.001 |
-|         u_core_reg                                                          |     0.014 |
+|         u_core_decode                                                       |    <0.001 |
+|         u_core_reg                                                          |     0.013 |
 |     core_top_0_axi_periph                                                   |     0.000 |
 |     floating_point_0                                                        |     0.003 |
 |       U0                                                                    |     0.003 |
@@ -1094,8 +1112,8 @@ Table of Contents
 |               WIDE_AND                                                      |    <0.001 |
 |             STRUCT_CMP.A_EXP_ALL_ONE_DET                                    |    <0.001 |
 |               CARRY_ZERO_DET                                                |    <0.001 |
-|             STRUCT_CMP.A_FRAC_NOT_ZERO_DET                                  |    <0.001 |
-|               WIDE_NOR                                                      |    <0.001 |
+|             STRUCT_CMP.A_FRAC_NOT_ZERO_DET                                  |     0.000 |
+|               WIDE_NOR                                                      |     0.000 |
 |             STRUCT_CMP.A_GT_B_DET                                           |    <0.001 |
 |               C_CHAIN                                                       |    <0.001 |
 |             STRUCT_CMP.B_EXP_ALL_ONE_DET                                    |    <0.001 |
@@ -1106,68 +1124,10 @@ Table of Contents
 |               CARRY_ZERO_DET                                                |    <0.001 |
 |           i_nd_to_rdy                                                       |    <0.001 |
 |           need_combiner.use_3to1.skid_buffer_combiner                       |    <0.001 |
-|     floating_point_2                                                        |     0.004 |
-|       U0                                                                    |     0.004 |
-|         i_synth                                                             |     0.004 |
-|           FIX_TO_FLT_OP.SPD.OP                                              |     0.003 |
-|             EXP                                                             |    <0.001 |
-|               EXP_MOD_DEL                                                   |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               ZERO_DELAY                                                    |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               a_is_signed.IP_SIGN_DELAY                                     |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|             FIXED_DATA_SIGNED.M_ABS                                         |    <0.001 |
-|               Q_DEL                                                         |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|             LZE                                                             |    <0.001 |
-|               ENCODE[0].DIST_DEL                                            |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               ENCODE[0].MUX_0                                               |    <0.001 |
-|                 OP_DEL                                                      |    <0.001 |
-|                   i_pipe                                                    |    <0.001 |
-|               ENCODE[0].MUX_Z                                               |    <0.001 |
-|                 OP_DEL                                                      |    <0.001 |
-|                   i_pipe                                                    |    <0.001 |
-|               ENCODE[1].DIST_DEL                                            |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               ENCODE[1].MUX_0                                               |    <0.001 |
-|                 OP_DEL                                                      |    <0.001 |
-|                   i_pipe                                                    |    <0.001 |
-|               ZERO_DET_CC_1                                                 |    <0.001 |
-|               ZERO_DET_CC_2.CC                                              |    <0.001 |
-|             NEED_Z_DET.Z_DET                                                |    <0.001 |
-|               ENCODE[0].DIST_OVER_DEL                                       |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               ENCODE[0].Z_DET_DEL                                           |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               ENCODE[1].Z_DET_DEL                                           |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               Z_C_DEL                                                       |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|             NORM_SHIFT                                                      |    <0.001 |
-|               MUX_LOOP[0].DEL_SHIFT                                         |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|               MUX_LOOP[1].DEL_SHIFT                                         |    <0.001 |
-|                 i_pipe                                                      |    <0.001 |
-|             OP                                                              |    <0.001 |
-|             ROUND                                                           |    <0.001 |
-|               LOGIC.RND1                                                    |    <0.001 |
-|                 Q_DEL                                                       |    <0.001 |
-|                   i_pipe                                                    |    <0.001 |
-|               LOGIC.RND2                                                    |    <0.001 |
-|                 Q_DEL                                                       |    <0.001 |
-|                   i_pipe                                                    |    <0.001 |
-|               RND_BIT_GEN                                                   |    <0.001 |
-|                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1                         |    <0.001 |
-|             Z_C_DEL                                                         |    <0.001 |
-|               i_pipe                                                        |    <0.001 |
-|           i_nd_to_rdy                                                       |    <0.001 |
-|           need_combiner.use_2to1.skid_buffer_combiner                       |    <0.001 |
-|     floating_point_3                                                        |     0.018 |
-|       U0                                                                    |     0.018 |
-|         i_synth                                                             |     0.018 |
-|           DIV_OP.SPD.OP                                                     |     0.017 |
+|     floating_point_2                                                        |     0.019 |
+|       U0                                                                    |     0.019 |
+|         i_synth                                                             |     0.019 |
+|           DIV_OP.SPD.OP                                                     |     0.018 |
 |             EXP                                                             |    <0.001 |
 |               COND_DET_A                                                    |    <0.001 |
 |                 EXP_DET_LUT.EXP_ALL_ONE_DEL                                 |    <0.001 |
@@ -1203,7 +1163,7 @@ Table of Contents
 |                 i_pipe                                                      |    <0.001 |
 |               STATE_UP_DELAY                                                |    <0.001 |
 |                 i_pipe                                                      |    <0.001 |
-|             MANT_DIV                                                        |     0.015 |
+|             MANT_DIV                                                        |     0.016 |
 |               RT[0].ADDSUB                                                  |    <0.001 |
 |                 ADDSUB                                                      |    <0.001 |
 |                   Q_DEL                                                     |    <0.001 |
@@ -1383,7 +1343,65 @@ Table of Contents
 |                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1                         |    <0.001 |
 |           i_nd_to_rdy                                                       |    <0.001 |
 |           need_combiner.use_2to1.skid_buffer_combiner                       |    <0.001 |
-|     floating_point_5                                                        |     0.002 |
+|     floating_point_3                                                        |     0.004 |
+|       U0                                                                    |     0.004 |
+|         i_synth                                                             |     0.004 |
+|           FIX_TO_FLT_OP.SPD.OP                                              |     0.004 |
+|             EXP                                                             |    <0.001 |
+|               EXP_MOD_DEL                                                   |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               ZERO_DELAY                                                    |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               a_is_signed.IP_SIGN_DELAY                                     |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|             FIXED_DATA_SIGNED.M_ABS                                         |    <0.001 |
+|               Q_DEL                                                         |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|             LZE                                                             |    <0.001 |
+|               ENCODE[0].DIST_DEL                                            |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               ENCODE[0].MUX_0                                               |    <0.001 |
+|                 OP_DEL                                                      |    <0.001 |
+|                   i_pipe                                                    |    <0.001 |
+|               ENCODE[0].MUX_Z                                               |    <0.001 |
+|                 OP_DEL                                                      |    <0.001 |
+|                   i_pipe                                                    |    <0.001 |
+|               ENCODE[1].DIST_DEL                                            |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               ENCODE[1].MUX_0                                               |    <0.001 |
+|                 OP_DEL                                                      |    <0.001 |
+|                   i_pipe                                                    |    <0.001 |
+|               ZERO_DET_CC_1                                                 |    <0.001 |
+|               ZERO_DET_CC_2.CC                                              |    <0.001 |
+|             NEED_Z_DET.Z_DET                                                |    <0.001 |
+|               ENCODE[0].DIST_OVER_DEL                                       |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               ENCODE[0].Z_DET_DEL                                           |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               ENCODE[1].Z_DET_DEL                                           |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               Z_C_DEL                                                       |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|             NORM_SHIFT                                                      |    <0.001 |
+|               MUX_LOOP[0].DEL_SHIFT                                         |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|               MUX_LOOP[1].DEL_SHIFT                                         |    <0.001 |
+|                 i_pipe                                                      |    <0.001 |
+|             OP                                                              |    <0.001 |
+|             ROUND                                                           |    <0.001 |
+|               LOGIC.RND1                                                    |    <0.001 |
+|                 Q_DEL                                                       |    <0.001 |
+|                   i_pipe                                                    |    <0.001 |
+|               LOGIC.RND2                                                    |    <0.001 |
+|                 Q_DEL                                                       |    <0.001 |
+|                   i_pipe                                                    |    <0.001 |
+|               RND_BIT_GEN                                                   |    <0.001 |
+|                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1                         |    <0.001 |
+|             Z_C_DEL                                                         |    <0.001 |
+|               i_pipe                                                        |    <0.001 |
+|           i_nd_to_rdy                                                       |    <0.001 |
+|           need_combiner.use_2to1.skid_buffer_combiner                       |    <0.001 |
+|     floating_point_4                                                        |     0.002 |
 |       U0                                                                    |     0.002 |
 |         i_synth                                                             |     0.002 |
 |           FLT_TO_FIX_OP.SPD.OP                                              |     0.001 |
@@ -1439,10 +1457,10 @@ Table of Contents
 |                 i_pipe                                                      |    <0.001 |
 |           i_nd_to_rdy                                                       |    <0.001 |
 |           need_combiner.use_2to1.skid_buffer_combiner                       |    <0.001 |
-|     floating_point_6                                                        |     0.011 |
-|       U0                                                                    |     0.011 |
-|         i_synth                                                             |     0.011 |
-|           SQRT_OP.SPD.OP                                                    |     0.011 |
+|     floating_point_5                                                        |     0.012 |
+|       U0                                                                    |     0.012 |
+|         i_synth                                                             |     0.012 |
+|           SQRT_OP.SPD.OP                                                    |     0.012 |
 |             i_mant_calc.EXP                                                 |    <0.001 |
 |               COND_DET_A                                                    |    <0.001 |
 |                 EXP_DET_LUT.EXP_ALL_ONE_DEL                                 |    <0.001 |
@@ -1463,7 +1481,7 @@ Table of Contents
 |                 i_pipe                                                      |    <0.001 |
 |             i_mant_calc.MANT_DEL                                            |    <0.001 |
 |               i_pipe                                                        |    <0.001 |
-|             i_mant_calc.MANT_SQRT                                           |     0.010 |
+|             i_mant_calc.MANT_SQRT                                           |     0.011 |
 |               RT[0].ADDSUB                                                  |    <0.001 |
 |                 ADDSUB                                                      |    <0.001 |
 |                   Q_DEL                                                     |    <0.001 |
@@ -1648,10 +1666,10 @@ Table of Contents
 |                 NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN                    |    <0.001 |
 |           i_nd_to_rdy                                                       |    <0.001 |
 |           need_combiner.use_2to1.skid_buffer_combiner                       |    <0.001 |
-|     floating_point_7                                                        |     0.006 |
-|       U0                                                                    |     0.006 |
-|         i_synth                                                             |     0.006 |
-|           MULT.OP                                                           |     0.005 |
+|     floating_point_6                                                        |     0.008 |
+|       U0                                                                    |     0.008 |
+|         i_synth                                                             |     0.008 |
+|           MULT.OP                                                           |     0.007 |
 |             EXP                                                             |    <0.001 |
 |               COND_DET_A                                                    |    <0.001 |
 |                 EXP_DET_LUT.EXP_ALL_ONE_DEL                                 |    <0.001 |
@@ -1684,10 +1702,10 @@ Table of Contents
 |                 i_pipe                                                      |    <0.001 |
 |               STATE_DELAY                                                   |    <0.001 |
 |                 i_pipe                                                      |    <0.001 |
-|             MULT                                                            |     0.004 |
-|               QQ_VARIANT.MULT                                               |     0.004 |
-|                 MANT_MULT                                                   |     0.004 |
-|                   logic_multiplier.m1                                       |     0.004 |
+|             MULT                                                            |     0.006 |
+|               QQ_VARIANT.MULT                                               |     0.006 |
+|                 MANT_MULT                                                   |     0.006 |
+|                   logic_multiplier.m1                                       |     0.006 |
 |                     aDelayReg                                               |    <0.001 |
 |                       needDelay.oneLastDelay.del1                           |    <0.001 |
 |                     ctl[0].nt.ct                                            |    <0.001 |

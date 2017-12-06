@@ -75,6 +75,9 @@ module core_decode
   output reg I_IN,
   output reg I_OUT,
 
+  output reg RDVALID,
+  output reg FRDVALID,
+
   output reg I_ROT
 );
 
@@ -82,6 +85,17 @@ module core_decode
   wire [6:0] func7;
   assign func3 = INST[14:12];
   assign func7 = INST[31:25];
+
+  // RDとFRDがvalidかどうか
+  always @(posedge CLK) begin
+    if(!RST_N) begin
+      RDVALID <= 0;
+      FRDVALID <= 0;
+    end else begin
+      RDVALID <= !(I_BEQ | I_BNE | I_BLT | I_BGE | I_BLTU | I_BGEU | I_SB | I_SH | I_SW);
+      FRDVALID <= (I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW);
+    end
+  end
 
   // IMM
   always @(posedge CLK) begin
@@ -97,13 +111,13 @@ module core_decode
     end
   end
 
-  assign RD_NUM = ( (INST[6:0] == 7'b0001011) | ( (INST[6:2] == 5'b10100) && ( (func7 == 7'b1010000) | (func7 == 7'b1100000) ) ) | (INST[6:2] == 5'b01100) | ((INST[6:0] == 7'b1100111) || (INST[6:0] == 7'b0000011) ||(INST[6:0] == 7'b0010011)) | (INST[4:0] == 5'b10111) | (INST[6:0] == 7'b1101111) | (INST[6:0] == 7'b0000001)) ? INST[11:7] : 5'd0;
-  assign RS1_NUM = ( (INST[6:0] == 7'b0000001) | (INST[6:0] == 7'b0001011) | ( (INST[6:2] == 5'b10100) && ((func7 == 7'b1111000) | (func7 == 7'b1101000)) ) | (INST[6:2] == 5'b01100) | ((INST[6:0] == 7'b1100111) || (INST[6:0] == 7'b0000011) ||  (INST[6:0] == 7'b0000111) ||(INST[6:0] == 7'b0010011)) | (INST[6:0] == 7'b0100011) | (INST[6:0] == 7'b0100111) | (INST[6:0] == 7'b1100011)) ? INST[19:15] : 5'd0;
-  assign RS2_NUM = ((INST[6:2] == 5'b01100) | (INST[6:0] == 7'b0100011) | (INST[6:0] == 7'b1100011) ) ? INST[24:20] : 5'd0;
+  assign RD_NUM = INST[11:7];
+  assign RS1_NUM = INST[19:15];
+  assign RS2_NUM = INST[24:20];
 
-  assign FRD_NUM = (INST[6:0] == 7'b0000111) | ( (INST[6:2] == 5'b10100) && ( (func7 == 7'b0101100) | (func7 == 7'b1101000) | (func7 == 7'b1111000) | (func7 == 7'b0000000) | (func7 == 7'b0000100) | (func7 == 7'b0001000) | (func7 == 7'b0001100) | (func7 == 7'b0010000) ) ) ? INST[11:7] : 5'd0;
-  assign FRS1_NUM = ( (INST[6:2] == 5'b10100) && ( (func7 == 7'b0101100) | (func7 == 7'b1100000) | (func7 == 7'b1010000) | (func7 == 7'b0000000) | (func7 == 7'b0000100) | (func7 == 7'b0001000) | (func7 == 7'b0001100) | (func7 == 7'b0010000) ) ) ? INST[19:15] : 5'd0;
-  assign FRS2_NUM = (INST[6:0] == 7'b0100111) | ( (INST[6:2] == 5'b10100) && ( (func7 == 7'b1010000) | (func7 == 7'b0000000) | (func7 == 7'b0000100) | (func7 == 7'b0001000) | (func7 == 7'b0001100) | (func7 == 7'b0010000) ) ) ? INST[24:20] : 5'd0;
+  assign FRD_NUM = INST[11:7];
+  assign FRS1_NUM = INST[19:15];
+  assign FRS2_NUM = INST[24:20];
 
   always @(posedge CLK) begin
     if(!RST_N) begin

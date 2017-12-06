@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Wed Dec  6 17:49:53 2017
+-- Date        : Wed Dec  6 19:37:38 2017
 -- Host        : ispc2016 running 64-bit Ubuntu 14.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0_stub.vhdl
