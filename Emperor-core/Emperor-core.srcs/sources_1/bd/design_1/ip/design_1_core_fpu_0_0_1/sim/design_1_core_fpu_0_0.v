@@ -71,6 +71,7 @@ module design_1_core_fpu_0_0 (
   frs2,
   fpu_result,
   tvalid_once,
+  exec,
   stole,
   addsub_a_tdata,
   addsub_a_tready,
@@ -153,6 +154,7 @@ input wire [31 : 0] frs1;
 input wire [31 : 0] frs2;
 output wire [31 : 0] fpu_result;
 output wire tvalid_once;
+input wire exec;
 input wire stole;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 addsub_a TDATA" *)
 output wire [31 : 0] addsub_a_tdata;
@@ -293,6 +295,7 @@ input wire fsqrts_r_tvalid;
     .frs2(frs2),
     .fpu_result(fpu_result),
     .tvalid_once(tvalid_once),
+    .exec(exec),
     .stole(stole),
     .addsub_a_tdata(addsub_a_tdata),
     .addsub_a_tready(addsub_a_tready),

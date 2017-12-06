@@ -29,20 +29,20 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="kcu105"/>
     <Option Name="DSANumComputeUnits" Val="16"/>
-    <Option Name="WTXSimLaunchSim" Val="17"/>
+    <Option Name="WTXSimLaunchSim" Val="19"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="8"/>
-    <Option Name="WTModelSimExportSim" Val="8"/>
-    <Option Name="WTQuestaExportSim" Val="8"/>
-    <Option Name="WTIesExportSim" Val="8"/>
-    <Option Name="WTVcsExportSim" Val="8"/>
-    <Option Name="WTRivieraExportSim" Val="8"/>
-    <Option Name="WTActivehdlExportSim" Val="8"/>
+    <Option Name="WTXSimExportSim" Val="9"/>
+    <Option Name="WTModelSimExportSim" Val="9"/>
+    <Option Name="WTQuestaExportSim" Val="9"/>
+    <Option Name="WTIesExportSim" Val="9"/>
+    <Option Name="WTVcsExportSim" Val="9"/>
+    <Option Name="WTRivieraExportSim" Val="9"/>
+    <Option Name="WTActivehdlExportSim" Val="9"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -106,14 +106,18 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_xlconstant_0_0_1/design_1_xlconstant_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_floating_point_5_0_1/design_1_floating_point_5_0.xci"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_blk_mem_gen_0_0_1/design_1_blk_mem_gen_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="sim/design_1_core_fpu_0_0.v"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_floating_point_0_0_1/design_1_floating_point_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_floating_point_1_0/design_1_floating_point_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="design_1_ooc.xdc"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_core_fpu_0_0_1/design_1_core_fpu_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_core_top_0_0_1/design_1_core_top_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="design_1_core_top_0_0.xml"/>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="synth/design_1_core_top_0_0.v"/>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="sim/design_1_core_top_0_0.v"/>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="design_1_core_fpu_0_0.xml"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="sim/design_1_core_top_0_0.v"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hw_handoff/design_1.hwh"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hdl/design_1.hwdef"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hw_handoff/design_1_bd.tcl"/>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
         <FileInfo>

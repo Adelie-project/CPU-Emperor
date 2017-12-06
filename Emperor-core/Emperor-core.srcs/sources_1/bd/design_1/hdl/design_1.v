@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-//Date        : Thu Dec  7 01:55:19 2017
+//Date        : Thu Dec  7 02:38:53 2017
 //Host        : ispc2016 running 64-bit Ubuntu 14.04.5 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -84,6 +84,7 @@ module design_1
   wire core_top_0_axi_periph_M00_AXI_WREADY;
   wire [3:0]core_top_0_axi_periph_M00_AXI_WSTRB;
   wire core_top_0_axi_periph_M00_AXI_WVALID;
+  wire core_top_0_exec;
   wire [31:0]core_top_0_frs1;
   wire [31:0]core_top_0_frs2;
   wire core_top_0_i_fadds;
@@ -212,6 +213,7 @@ module design_1
         .div_r_tdata(floating_point_2_M_AXIS_RESULT_TDATA),
         .div_r_tready(floating_point_2_M_AXIS_RESULT_TREADY),
         .div_r_tvalid(floating_point_2_M_AXIS_RESULT_TVALID),
+        .exec(core_top_0_exec),
         .fcvtsw_a_tdata(core_fpu_0_fcvtsw_a_TDATA),
         .fcvtsw_a_tready(core_fpu_0_fcvtsw_a_TREADY),
         .fcvtsw_a_tvalid(core_fpu_0_fcvtsw_a_TVALID),
@@ -281,6 +283,7 @@ module design_1
         .WREADY(core_top_0_interface_aximm_WREADY),
         .WSTRB(core_top_0_interface_aximm_WSTRB),
         .WVALID(core_top_0_interface_aximm_WVALID),
+        .exec(core_top_0_exec),
         .fpu_result(core_fpu_0_fpu_result),
         .frs1(core_top_0_frs1),
         .frs2(core_top_0_frs2),

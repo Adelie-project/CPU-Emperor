@@ -94,6 +94,7 @@ module design_1_core_top_0_0 (
   frs2,
   fpu_result,
   tvalid_once,
+  exec,
   stole
 );
 
@@ -156,6 +157,7 @@ output wire [31 : 0] frs1;
 output wire [31 : 0] frs2;
 input wire [31 : 0] fpu_result;
 input wire tvalid_once;
+output wire exec;
 output wire stole;
 
   core_top inst (
@@ -199,6 +201,7 @@ output wire stole;
     .frs2(frs2),
     .fpu_result(fpu_result),
     .tvalid_once(tvalid_once),
+    .exec(exec),
     .stole(stole)
   );
 endmodule
