@@ -265,7 +265,7 @@ module core_fpu
       fsqrts_f <= fsqrts_r_tvalid;
 
       tvalid_once <= (tvalid_once) ? 0 :
-                     ((!addsub_f && addsub_r_tvalid) || (!mul_f && mul_r_tvalid) || (!div_f && div_r_tvalid) || (!comp_f && comp_r_tvalid) || (!fcvtsw_f && fcvtsw_r_tvalid) || (!fcvtws_f && fcvtws_r_tvalid) || (!fsqrts_f && fsqrts_r_tvalid)) ? 1:
+                     (stole && ((!addsub_f && addsub_r_tvalid) || (!mul_f && mul_r_tvalid) || (!div_f && div_r_tvalid) || (!comp_f && comp_r_tvalid) || (!fcvtsw_f && fcvtsw_r_tvalid) || (!fcvtws_f && fcvtws_r_tvalid) || (!fsqrts_f && fsqrts_r_tvalid))) ? 1:
                      0;
     end
   end
