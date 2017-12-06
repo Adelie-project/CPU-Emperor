@@ -1,0 +1,513 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Wed Dec  6 17:54:32 2017
+# Process ID: 6485
+# Current directory: /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1
+# Command line: vivado -log design_1_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
+# Log file: /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper.vdi
+# Journal file: /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source design_1_wrapper.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1.dcp' for cell 'design_1_i/axi_uartlite_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0.dcp' for cell 'design_1_i/blk_mem_gen_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_1_0/design_1_blk_mem_gen_1_0.dcp' for cell 'design_1_i/blk_mem_gen_1'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.dcp' for cell 'design_1_i/clk_wiz_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_core_top_0_0/design_1_core_top_0_0.dcp' for cell 'design_1_i/core_top_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_0/design_1_floating_point_0_0.dcp' for cell 'design_1_i/floating_point_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_1/design_1_floating_point_0_1.dcp' for cell 'design_1_i/floating_point_1'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_2/design_1_floating_point_0_2.dcp' for cell 'design_1_i/floating_point_2'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_3/design_1_floating_point_0_3.dcp' for cell 'design_1_i/floating_point_3'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_2_0/design_1_floating_point_2_0.dcp' for cell 'design_1_i/floating_point_5'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_5_0/design_1_floating_point_5_0.dcp' for cell 'design_1_i/floating_point_6'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_5_1/design_1_floating_point_5_1.dcp' for cell 'design_1_i/floating_point_7'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0.dcp' for cell 'design_1_i/rst_clk_wiz_0_100M'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_0/design_1_xlconstant_0_0.dcp' for cell 'design_1_i/xlconstant_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_1/design_1_xlconstant_0_1.dcp' for cell 'design_1_i/xlconstant_1'
+INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Device 21-403] Loading part xcku040-ffva1156-2-e
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'IOSTANDARD' constraint because net 'design_1_i/axi_uartlite_0/rx' is not directly connected to top level port. 'IOSTANDARD' is ignored by Vivado but preserved for implementation tool. [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/.Xil/Vivado-6485-ispc2016/dcp_15/design_1_axi_uartlite_0_1.edf:7635]
+WARNING: [Constraints 18-550] Could not create 'IOSTANDARD' constraint because net 'design_1_i/axi_uartlite_0/tx' is not directly connected to top level port. 'IOSTANDARD' is ignored by Vivado but preserved for implementation tool. [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/.Xil/Vivado-6485-ispc2016/dcp_15/design_1_axi_uartlite_0_1.edf:7702]
+WARNING: [Constraints 18-550] Could not create 'IOSTANDARD' constraint because net 'design_1_i/clk_wiz_0/reset' is not directly connected to top level port. 'IOSTANDARD' is ignored by Vivado but preserved for implementation tool. [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/.Xil/Vivado-6485-ispc2016/dcp_10/design_1_clk_wiz_0_0.edf:355]
+WARNING: [Constraints 18-550] Could not create 'IOSTANDARD' constraint because net 'design_1_i/rst_clk_wiz_0_100M/ext_reset_in' is not directly connected to top level port. 'IOSTANDARD' is ignored by Vivado but preserved for implementation tool. [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/.Xil/Vivado-6485-ispc2016/dcp_16/design_1_rst_clk_wiz_0_100M_0.edf:1546]
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_board.xdc] for cell 'design_1_i/clk_wiz_0/inst'
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_board.xdc] for cell 'design_1_i/clk_wiz_0/inst'
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc] for cell 'design_1_i/clk_wiz_0/inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc:57]
+INFO: [Timing 38-2] Deriving generated clocks [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc:57]
+get_clocks: Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 1850.293 ; gain = 346.500 ; free physical = 8592 ; free virtual = 27817
+WARNING: [Vivado 12-2489] -input_jitter contains time 0.033330 which will be rounded to 0.033 to ensure it is an integer multiple of 1 picosecond [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc:57]
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc] for cell 'design_1_i/clk_wiz_0/inst'
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1_board.xdc] for cell 'design_1_i/axi_uartlite_0/U0'
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1_board.xdc] for cell 'design_1_i/axi_uartlite_0/U0'
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1.xdc] for cell 'design_1_i/axi_uartlite_0/U0'
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1.xdc] for cell 'design_1_i/axi_uartlite_0/U0'
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0_board.xdc] for cell 'design_1_i/rst_clk_wiz_0_100M/U0'
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0_board.xdc] for cell 'design_1_i/rst_clk_wiz_0_100M/U0'
+Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0.xdc] for cell 'design_1_i/rst_clk_wiz_0_100M/U0'
+Finished Parsing XDC File [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0.xdc] for cell 'design_1_i/rst_clk_wiz_0_100M/U0'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_0/design_1_floating_point_0_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_1/design_1_floating_point_0_1.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_2/design_1_floating_point_0_2.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_3/design_1_floating_point_0_3.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_2_0/design_1_floating_point_2_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_5_0/design_1_floating_point_5_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_5_1/design_1_floating_point_5_1.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_1_0/design_1_blk_mem_gen_1_0.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_1/design_1_axi_uartlite_0_1.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0/design_1_rst_clk_wiz_0_100M_0.dcp'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD_DATA, DSP_PREADD): 2 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 2 instances
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 1 instances
+
+link_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:17 . Memory (MB): peak = 1850.297 ; gain = 847.414 ; free physical = 8629 ; free virtual = 27816
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1223] The version limit for your license is '2017.03' and will expire in -250 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.80 . Memory (MB): peak = 1890.316 ; gain = 32.020 ; free physical = 8624 ; free virtual = 27812
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+Implement Debug Cores | Checksum: b1ad1917
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 7 inverter(s) to 2398 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: c8a685e0
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8616 ; free virtual = 27803
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-10] Eliminated 180 cells.
+Phase 2 Constant propagation | Checksum: 164404611
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8615 ; free virtual = 27802
+
+Phase 3 Sweep
+INFO: [Opt 31-12] Eliminated 2256 unconnected nets.
+INFO: [Opt 31-11] Eliminated 253 unconnected cells.
+Phase 3 Sweep | Checksum: 1165d296e
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8615 ; free virtual = 27802
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-12] Eliminated 0 unconnected nets.
+INFO: [Opt 31-11] Eliminated 0 unconnected cells.
+Phase 4 BUFG optimization | Checksum: efdd84c9
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8615 ; free virtual = 27802
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8615 ; free virtual = 27802
+Ending Logic Optimization Task | Checksum: efdd84c9
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1902.312 ; gain = 0.000 ; free physical = 8615 ; free virtual = 27802
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 420 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 385 Total Ports: 840
+Ending PowerOpt Patch Enables Task | Checksum: fa8252c7
+
+Time (s): cpu = 00:00:00.50 ; elapsed = 00:00:00.50 . Memory (MB): peak = 2598.164 ; gain = 0.000 ; free physical = 7983 ; free virtual = 27175
+Ending Power Optimization Task | Checksum: fa8252c7
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:29 . Memory (MB): peak = 2598.164 ; gain = 695.852 ; free physical = 7983 ; free virtual = 27175
+INFO: [Common 17-83] Releasing license: Implementation
+57 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:01:15 ; elapsed = 00:00:41 . Memory (MB): peak = 2598.164 ; gain = 747.863 ; free physical = 7983 ; free virtual = 27175
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2598.164 ; gain = 0.000 ; free physical = 7980 ; free virtual = 27175
+INFO: [Common 17-1381] The checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_opt.dcp' has been generated.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_drc_opted.rpt.
+INFO: [Chipscope 16-241] No debug cores found in the current design.
+Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
+or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1223] The version limit for your license is '2017.03' and will expire in -250 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Phase 1 Placer Initialization
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2598.164 ; gain = 0.000 ; free physical = 7975 ; free virtual = 27172
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2598.164 ; gain = 0.000 ; free physical = 7972 ; free virtual = 27170
+
+Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 1a1f19aac
+
+Time (s): cpu = 00:00:50 ; elapsed = 00:00:38 . Memory (MB): peak = 2770.219 ; gain = 172.055 ; free physical = 7469 ; free virtual = 26909
+
+Phase 1.2 Build Placer Netlist Model
+Phase 1.2 Build Placer Netlist Model | Checksum: 241af2058
+
+Time (s): cpu = 00:01:00 ; elapsed = 00:00:44 . Memory (MB): peak = 2770.219 ; gain = 172.055 ; free physical = 7465 ; free virtual = 26908
+
+Phase 1.3 Constrain Clocks/Macros
+Phase 1.3 Constrain Clocks/Macros | Checksum: 241af2058
+
+Time (s): cpu = 00:01:00 ; elapsed = 00:00:44 . Memory (MB): peak = 2770.219 ; gain = 172.055 ; free physical = 7465 ; free virtual = 26908
+Phase 1 Placer Initialization | Checksum: 241af2058
+
+Time (s): cpu = 00:01:00 ; elapsed = 00:00:44 . Memory (MB): peak = 2770.219 ; gain = 172.055 ; free physical = 7465 ; free virtual = 26908
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 12c96f1a5
+
+Time (s): cpu = 00:01:28 ; elapsed = 00:01:01 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 12c96f1a5
+
+Time (s): cpu = 00:01:29 ; elapsed = 00:01:01 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 22bc45d69
+
+Time (s): cpu = 00:01:33 ; elapsed = 00:01:04 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1562b9ddd
+
+Time (s): cpu = 00:01:33 ; elapsed = 00:01:04 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 1c70d8e42
+
+Time (s): cpu = 00:01:33 ; elapsed = 00:01:04 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.5 IO Cut Optimizer
+Phase 3.5 IO Cut Optimizer | Checksum: 1a01167f8
+
+Time (s): cpu = 00:01:34 ; elapsed = 00:01:05 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.6 Timing Path Optimizer
+Phase 3.6 Timing Path Optimizer | Checksum: 1a01167f8
+
+Time (s): cpu = 00:01:34 ; elapsed = 00:01:05 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.7 Small Shape Detail Placement
+Phase 3.7 Small Shape Detail Placement | Checksum: 183c1bdec
+
+Time (s): cpu = 00:01:43 ; elapsed = 00:01:09 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.8 Re-assign LUT pins
+Phase 3.8 Re-assign LUT pins | Checksum: 1cfa5bfaf
+
+Time (s): cpu = 00:01:43 ; elapsed = 00:01:09 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 3.9 Pipeline Register Optimization
+Phase 3.9 Pipeline Register Optimization | Checksum: 1cfa5bfaf
+
+Time (s): cpu = 00:01:44 ; elapsed = 00:01:10 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+Phase 3 Detail Placement | Checksum: 1cfa5bfaf
+
+Time (s): cpu = 00:01:44 ; elapsed = 00:01:10 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=1.159. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 16a6ce82d
+
+Time (s): cpu = 00:02:06 ; elapsed = 00:01:20 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+Phase 4.1 Post Commit Optimization | Checksum: 16a6ce82d
+
+Time (s): cpu = 00:02:06 ; elapsed = 00:01:20 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 16a6ce82d
+
+Time (s): cpu = 00:02:07 ; elapsed = 00:01:20 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: 2315eacd9
+
+Time (s): cpu = 00:02:08 ; elapsed = 00:01:21 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 201eb00ca
+
+Time (s): cpu = 00:02:08 ; elapsed = 00:01:22 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 201eb00ca
+
+Time (s): cpu = 00:02:08 ; elapsed = 00:01:22 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+Ending Placer Task | Checksum: 185b3ffc2
+
+Time (s): cpu = 00:02:08 ; elapsed = 00:01:22 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+INFO: [Common 17-83] Releasing license: Implementation
+76 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:02:13 ; elapsed = 00:01:24 . Memory (MB): peak = 2794.227 ; gain = 196.062 ; free physical = 7461 ; free virtual = 26907
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2794.227 ; gain = 0.000 ; free physical = 7434 ; free virtual = 26908
+INFO: [Common 17-1381] The checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_placed.dcp' has been generated.
+report_io: Time (s): cpu = 00:00:00.19 ; elapsed = 00:00:00.24 . Memory (MB): peak = 2794.227 ; gain = 0.000 ; free physical = 7450 ; free virtual = 26905
+report_utilization: Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.20 . Memory (MB): peak = 2794.227 ; gain = 0.000 ; free physical = 7450 ; free virtual = 26905
+report_control_sets: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.10 . Memory (MB): peak = 2794.227 ; gain = 0.000 ; free physical = 7449 ; free virtual = 26904
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1223] The version limit for your license is '2017.03' and will expire in -250 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+Checksum: PlaceDB: b65c060c ConstDB: 0 ShapeSum: 866350a RouteDB: c6f1c4ac
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 14a016e41
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:24 . Memory (MB): peak = 2816.039 ; gain = 21.812 ; free physical = 7406 ; free virtual = 26863
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 1d487a2be
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:25 . Memory (MB): peak = 2816.043 ; gain = 21.816 ; free physical = 7405 ; free virtual = 26863
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 1d487a2be
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:25 . Memory (MB): peak = 2816.043 ; gain = 21.816 ; free physical = 7405 ; free virtual = 26864
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 1d487a2be
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:25 . Memory (MB): peak = 2816.043 ; gain = 21.816 ; free physical = 7405 ; free virtual = 26864
+
+Phase 2.4 Global Clock Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.4 Global Clock Net Routing | Checksum: 235d03485
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 2874.406 ; gain = 80.180 ; free physical = 7346 ; free virtual = 26805
+
+Phase 2.5 Update Timing
+Phase 2.5 Update Timing | Checksum: 2bf121ec7
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:41 . Memory (MB): peak = 2874.410 ; gain = 80.184 ; free physical = 7342 ; free virtual = 26802
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.454  | TNS=0.000  | WHS=-0.100 | THS=-2.298 |
+
+Phase 2 Router Initialization | Checksum: 2b010208d
+
+Time (s): cpu = 00:01:23 ; elapsed = 00:00:43 . Memory (MB): peak = 2874.410 ; gain = 80.184 ; free physical = 7342 ; free virtual = 26802
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 284ad5e3c
+
+Time (s): cpu = 00:01:40 ; elapsed = 00:00:49 . Memory (MB): peak = 2960.055 ; gain = 165.828 ; free physical = 7246 ; free virtual = 26705
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 2547
+ Number of Nodes with overlaps = 130
+ Number of Nodes with overlaps = 0
+
+Phase 4.1.1 Update Timing
+Phase 4.1.1 Update Timing | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:00 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.072  | TNS=0.000  | WHS=0.012  | THS=0.000  |
+
+Phase 4.1 Global Iteration 0 | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:00 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+Phase 4 Rip-up And Reroute | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:00 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:01 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:01 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+Phase 5 Delay and Skew Optimization | Checksum: 2d6a02186
+
+Time (s): cpu = 00:02:10 ; elapsed = 00:01:01 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7244 ; free virtual = 26704
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 2aa0549a2
+
+Time (s): cpu = 00:02:16 ; elapsed = 00:01:04 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7180 ; free virtual = 26639
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.072  | TNS=0.000  | WHS=0.012  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 25a374cda
+
+Time (s): cpu = 00:02:16 ; elapsed = 00:01:04 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7167 ; free virtual = 26627
+Phase 6 Post Hold Fix | Checksum: 25a374cda
+
+Time (s): cpu = 00:02:16 ; elapsed = 00:01:04 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7179 ; free virtual = 26639
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 1.76332 %
+  Global Horizontal Routing Utilization  = 1.56981 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 1cfeabb9c
+
+Time (s): cpu = 00:02:19 ; elapsed = 00:01:05 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7175 ; free virtual = 26634
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 1cfeabb9c
+
+Time (s): cpu = 00:02:19 ; elapsed = 00:01:06 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7174 ; free virtual = 26634
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 1cfeabb9c
+
+Time (s): cpu = 00:02:21 ; elapsed = 00:01:07 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7158 ; free virtual = 26618
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.072  | TNS=0.000  | WHS=0.012  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 1cfeabb9c
+
+Time (s): cpu = 00:02:21 ; elapsed = 00:01:07 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7158 ; free virtual = 26618
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:02:25 ; elapsed = 00:01:10 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7158 ; free virtual = 26618
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+90 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:02:31 ; elapsed = 00:01:11 . Memory (MB): peak = 2960.059 ; gain = 165.832 ; free physical = 7158 ; free virtual = 26618
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2968.062 ; gain = 0.004 ; free physical = 7122 ; free virtual = 26618
+INFO: [Common 17-1381] The checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_routed.dcp' has been generated.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_drc_routed.rpt.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 4 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/design_1_wrapper_methodology_drc_routed.rpt.
+report_methodology: Time (s): cpu = 00:00:20 ; elapsed = 00:00:08 . Memory (MB): peak = 2976.066 ; gain = 0.000 ; free physical = 7228 ; free virtual = 26699
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Command: report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+100 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+report_power: Time (s): cpu = 00:00:13 ; elapsed = 00:00:08 . Memory (MB): peak = 3005.078 ; gain = 29.012 ; free physical = 7207 ; free virtual = 26688
+Command: write_bitstream -force -no_partial_bitfile design_1_wrapper.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1223] The version limit for your license is '2017.03' and will expire in -250 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command write_bitstream
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-20] Rule violation (CFGBVS-1) Missing CFGBVS and CONFIG_VOLTAGE Design Properties - Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+INFO: [DRC 23-20] Rule violation (AVAL-155) enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND - design_1_i/floating_point_0/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/FULL_USAGE_DSP.SHIFT_RND/DSP: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 1 Warnings, 1 Advisories
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./design_1_wrapper.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-118] WebTalk data collection is enabled (User setting is ON. Install Setting is ON.).
+INFO: [Common 17-186] '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/impl_1/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Wed Dec  6 17:59:36 2017. For additional details about this file, please refer to the WebTalk help file at /opt/Xilinx/Vivado/2016.4/doc/webtalk_introduction.html.
+INFO: [Common 17-83] Releasing license: Implementation
+110 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:46 ; elapsed = 00:00:44 . Memory (MB): peak = 3356.684 ; gain = 351.605 ; free physical = 6825 ; free virtual = 26328
+INFO: [Common 17-206] Exiting Vivado at Wed Dec  6 17:59:36 2017...

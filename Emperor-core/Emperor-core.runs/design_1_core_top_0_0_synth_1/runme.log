@@ -1,0 +1,580 @@
+
+*** Running vivado
+    with args -log design_1_core_top_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_core_top_0_0.tcl
+
+
+****** Vivado v2016.4 (64-bit)
+  **** SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+  **** IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source design_1_core_top_0_0.tcl -notrace
+Command: synth_design -top design_1_core_top_0_0 -part xcku040-ffva1156-2-e -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcku040'
+INFO: [Common 17-1223] The version limit for your license is '2017.03' and will expire in -250 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 4017 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1178.355 ; gain = 242.977 ; free physical = 10023 ; free virtual = 28499
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_1_core_top_0_0' [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_core_top_0_0/synth/design_1_core_top_0_0.v:56]
+INFO: [Synth 8-638] synthesizing module 'core_top' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:1]
+	Parameter s_read_wait bound to: 7'b0000001 
+	Parameter s_read_wait2 bound to: 7'b0000010 
+	Parameter s_read bound to: 7'b0000100 
+	Parameter s_read2 bound to: 7'b0001000 
+	Parameter s_read3 bound to: 7'b0010000 
+	Parameter s_write_wait bound to: 7'b1000001 
+	Parameter s_write_wait2 bound to: 7'b1000010 
+	Parameter s_write bound to: 7'b1000100 
+	Parameter s_write2 bound to: 7'b1001000 
+	Parameter s_write3 bound to: 7'b1010000 
+	Parameter s_write4 bound to: 7'b1100000 
+	Parameter IDLE bound to: 7'b0000001 
+	Parameter FETCH bound to: 7'b0000010 
+	Parameter DECODE bound to: 7'b0000100 
+	Parameter EXECUTE bound to: 7'b0001000 
+	Parameter MEMORY bound to: 7'b0100000 
+	Parameter WRITEBACK bound to: 7'b1000000 
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:124]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:125]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:126]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:127]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:128]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:130]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:131]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:135]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:136]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:138]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:140]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:147]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:149]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:150]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:151]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:153]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:646]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:647]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:683]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:693]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:694]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:695]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:696]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:698]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:699]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:252]
+INFO: [Synth 8-638] synthesizing module 'core_decode' [/home/yamaguchi/CPU-Emperor/core/src/core_decode.v:1]
+INFO: [Synth 8-256] done synthesizing module 'core_decode' (1#1) [/home/yamaguchi/CPU-Emperor/core/src/core_decode.v:1]
+INFO: [Synth 8-638] synthesizing module 'core_alu' [/home/yamaguchi/CPU-Emperor/core/src/core_alu.v:1]
+INFO: [Synth 8-256] done synthesizing module 'core_alu' (2#1) [/home/yamaguchi/CPU-Emperor/core/src/core_alu.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:576]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:606]
+INFO: [Synth 8-638] synthesizing module 'core_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_reg.v:1]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_reg.v:29]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/yamaguchi/CPU-Emperor/core/src/core_reg.v:30]
+INFO: [Synth 8-256] done synthesizing module 'core_reg' (3#1) [/home/yamaguchi/CPU-Emperor/core/src/core_reg.v:1]
+INFO: [Synth 8-4471] merging register 'addsub_b_tvalid_reg' into 'addsub_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:176]
+INFO: [Synth 8-4471] merging register 'addsub_op_tvalid_reg' into 'addsub_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:178]
+INFO: [Synth 8-4471] merging register 'addsub_r_tready_reg' into 'addsub_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:179]
+INFO: [Synth 8-4471] merging register 'mul_b_tvalid_reg' into 'mul_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:192]
+INFO: [Synth 8-4471] merging register 'mul_r_tready_reg' into 'mul_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:193]
+INFO: [Synth 8-4471] merging register 'div_b_tvalid_reg' into 'div_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:201]
+INFO: [Synth 8-4471] merging register 'div_r_tready_reg' into 'div_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:202]
+INFO: [Synth 8-4471] merging register 'comp_b_tvalid_reg' into 'comp_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:211]
+INFO: [Synth 8-4471] merging register 'comp_op_tvalid_reg' into 'comp_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:213]
+INFO: [Synth 8-4471] merging register 'comp_r_tready_reg' into 'comp_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:214]
+INFO: [Synth 8-4471] merging register 'fcvtsw_r_tready_reg' into 'fcvtsw_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:221]
+INFO: [Synth 8-4471] merging register 'fcvtws_r_tready_reg' into 'fcvtws_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:228]
+INFO: [Synth 8-4471] merging register 'fsqrts_r_tready_reg' into 'fsqrts_a_tvalid_reg' [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:235]
+WARNING: [Synth 8-3848] Net addsub_r_tvalid in module/entity core_top does not have driver. [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:172]
+WARNING: [Synth 8-3848] Net addsub_a_tready in module/entity core_top does not have driver. [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:172]
+WARNING: [Synth 8-3848] Net addsub_b_tready in module/entity core_top does not have driver. [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:172]
+WARNING: [Synth 8-3848] Net addsub_op_tready in module/entity core_top does not have driver. [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:172]
+INFO: [Synth 8-256] done synthesizing module 'core_top' (4#1) [/home/yamaguchi/CPU-Emperor/core/src/core_top.v:1]
+INFO: [Synth 8-256] done synthesizing module 'design_1_core_top_0_0' (5#1) [/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_core_top_0_0/synth/design_1_core_top_0_0.v:56]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[30]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[29]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[28]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[27]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[26]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[25]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[24]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[23]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[22]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[21]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[20]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[19]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[18]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[17]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[16]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[15]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[14]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[13]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[12]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[11]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[10]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[9]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[8]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[7]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[6]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[5]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[4]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[3]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[2]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[1]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[0]
+WARNING: [Synth 8-3331] design core_top has unconnected port ADDSUB_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port ADDSUB_B_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port ADDSUB_OP_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port MUL_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port MUL_B_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port DIV_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port DIV_B_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port COMP_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port COMP_B_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port COMP_OP_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port FCVTSW_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port FCVTWS_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port FSQRTS_A_TREADY
+WARNING: [Synth 8-3331] design core_top has unconnected port BRESP[1]
+WARNING: [Synth 8-3331] design core_top has unconnected port BRESP[0]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[31]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[30]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[29]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[28]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[27]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[26]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[25]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[24]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[23]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[22]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[21]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[20]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[19]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[18]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[17]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[16]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[15]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[14]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[13]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[12]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[11]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[10]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[9]
+WARNING: [Synth 8-3331] design core_top has unconnected port RDATA[8]
+WARNING: [Synth 8-3331] design core_top has unconnected port RRESP[1]
+WARNING: [Synth 8-3331] design core_top has unconnected port RRESP[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1229.832 ; gain = 294.453 ; free physical = 9923 ; free virtual = 28400
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1229.832 ; gain = 294.453 ; free physical = 9912 ; free virtual = 28388
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcku040-ffva1156-2-e
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1683.328 ; gain = 2.000 ; free physical = 9323 ; free virtual = 27801
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1683.328 ; gain = 747.949 ; free physical = 9107 ; free virtual = 27586
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcku040-ffva1156-2-e
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1683.328 ; gain = 747.949 ; free physical = 9107 ; free virtual = 27586
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1683.328 ; gain = 747.949 ; free physical = 9107 ; free virtual = 27586
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "RESULT19" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "ARADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ARADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "RREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "RREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "AWADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "AWVALID" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "BREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ARADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ARADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "RREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "RREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "AWADDR" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "AWVALID" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "BREADY" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "total_cnt" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "addsub_op_tdata0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "comp_op_tdata1" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "read_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "read_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "read_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "read_status1" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "write_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "write_status1" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "write_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "write_status0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ARVALID0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "RREADY0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "AWVALID0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "WVALID0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "BREADY0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "stole_reg3" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "stole1" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tvalid_once_reg1" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tvalid_once0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1683.328 ; gain = 747.949 ; free physical = 9188 ; free virtual = 27668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 4     
+	   3 Input     32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               32 Bit    Registers := 73    
+	                8 Bit    Registers := 3     
+	                7 Bit    Registers := 3     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 77    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 2     
+	   7 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 87    
+	   5 Input     32 Bit        Muxes := 1     
+	   6 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   7 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 8     
+	   3 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 8     
+	   4 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 7     
+	   3 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 11    
+	   7 Input      1 Bit        Muxes := 8     
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module core_decode 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 54    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 6     
+	   2 Input      5 Bit        Muxes := 6     
+Module core_alu 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 17    
+	   5 Input     32 Bit        Muxes := 1     
+Module core_reg 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 67    
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 62    
+	   2 Input      1 Bit        Muxes := 1     
+Module core_top 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 3     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               32 Bit    Registers := 4     
+	                8 Bit    Registers := 3     
+	                7 Bit    Registers := 3     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 22    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 2     
+	   7 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 2     
+	   6 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   7 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 8     
+	   3 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   4 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 7     
+	   3 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 10    
+	   7 Input      1 Bit        Muxes := 8     
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1920 (col length:120)
+BRAMs: 1200 (col length: RAMB18 120 RAMB36 60)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[30]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[29]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[28]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[27]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[26]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[25]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[24]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[23]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[22]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[21]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[20]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[19]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[18]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[17]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[16]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[15]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[14]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[13]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[12]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[11]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[10]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[9]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[8]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[7]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[6]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[5]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[4]
+WARNING: [Synth 8-3331] design core_alu has unconnected port FRS2[3]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'inst/AWADDR_reg[0]' (FDRE) to 'inst/AWADDR_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/AWADDR_reg[1]' (FDRE) to 'inst/AWADDR_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\AWADDR_reg[3] )
+INFO: [Synth 8-3886] merging instance 'inst/ARADDR_reg[0]' (FDRE) to 'inst/ARADDR_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/ARADDR_reg[1]' (FDRE) to 'inst/ARADDR_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\ARADDR_reg[2] )
+INFO: [Synth 8-3886] merging instance 'inst/comp_op_tdata_reg[0]' (FD) to 'inst/comp_op_tdata_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\comp_op_tdata_reg[1] )
+INFO: [Synth 8-3886] merging instance 'inst/comp_op_tdata_reg[2]' (FD) to 'inst/comp_a_tvalid_reg'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[1]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[2]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[3]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[4]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[5]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/addsub_op_tdata_reg[6]' (FDR) to 'inst/addsub_op_tdata_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\addsub_op_tdata_reg[7] )
+WARNING: [Synth 8-3332] Sequential element (addsub_op_tdata_reg[7]) is unused and will be removed from module core_top.
+WARNING: [Synth 8-3332] Sequential element (comp_op_tdata_reg[1]) is unused and will be removed from module core_top.
+WARNING: [Synth 8-3332] Sequential element (ARADDR_reg[2]) is unused and will be removed from module core_top.
+WARNING: [Synth 8-3332] Sequential element (AWADDR_reg[3]) is unused and will be removed from module core_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 1683.332 ; gain = 747.953 ; free physical = 8860 ; free virtual = 27353
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1923.742 ; gain = 988.363 ; free physical = 9517 ; free virtual = 28027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1926.738 ; gain = 991.359 ; free physical = 9509 ; free virtual = 28020
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4765] Removing register instance (_WE_reg__0) from module (core_reg) as it is equivalent to (_WE_reg) and driving same net [/home/yamaguchi/CPU-Emperor/core/src/core_reg.v:69]
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1974.051 ; gain = 1038.672 ; free physical = 9336 ; free virtual = 27849
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27847
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27847
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27847
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27847
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27846
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27846
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY8 |    42|
+|2     |LUT1   |   110|
+|3     |LUT2   |   189|
+|4     |LUT3   |   192|
+|5     |LUT4   |  1026|
+|6     |LUT5   |   544|
+|7     |LUT6   |  1991|
+|8     |MUXF7  |   512|
+|9     |FDRE   |  2516|
+|10    |FDSE   |     4|
++------+-------+------+
+
+Report Instance Areas: 
++------+------------------+------------+------+
+|      |Instance          |Module      |Cells |
++------+------------------+------------+------+
+|1     |top               |            |  7126|
+|2     |  inst            |core_top    |  7126|
+|3     |    u_core_decode |core_decode |   233|
+|4     |    u_core_alu    |core_alu    |  1078|
+|5     |    u_core_reg    |core_reg    |  4898|
++------+------------------+------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.055 ; gain = 1038.676 ; free physical = 9334 ; free virtual = 27846
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 76 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 1974.055 ; gain = 417.199 ; free physical = 9334 ; free virtual = 27846
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1974.059 ; gain = 1038.680 ; free physical = 9334 ; free virtual = 27846
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+126 Infos, 108 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 1974.059 ; gain = 923.168 ; free physical = 9254 ; free virtual = 27767
+INFO: [Common 17-1381] The checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/design_1_core_top_0_0_synth_1/design_1_core_top_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1174] Renamed 4 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.runs/design_1_core_top_0_0_synth_1/design_1_core_top_0_0.dcp' has been generated.
+report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1998.066 ; gain = 0.000 ; free physical = 9223 ; free virtual = 27742
+INFO: [Common 17-206] Exiting Vivado at Wed Dec  6 17:43:46 2017...
