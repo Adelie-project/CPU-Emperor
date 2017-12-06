@@ -53,7 +53,8 @@ module core_top
     output wire [31:0] frs1,
     output wire [31:0] frs2,
     input wire [31:0] fpu_result,
-    input fpu_stole
+    input wire tvalid_once,
+    output reg stole
   );
 
   // PC
@@ -72,9 +73,6 @@ module core_top
        i_add, i_sub, i_sll, i_slt, i_sltu, i_xor, i_srl, i_sra, i_or, i_and, i_rot, i_fence, i_fencei;
  (* mark_debug = "true" *) wire i_flw, i_fsw, i_fmvsx, i_fsgnjxs;
  (* mark_debug = "true" *) wire i_in, i_out;
-
- // stoleが立っていたらcpuの状態を止める
- (* mark_debug = "true" *) reg stole;
 
  // UARTから来るデータ
  (* mark_debug = "true" *) reg [7:0] rdata;
@@ -239,7 +237,7 @@ module core_top
     .I_OUT (i_out),
 
     .I_FENCE (i_fence),
-    .I_FENCE (i_fencei),
+    .I_FENCEI (i_fencei),
 
     .RDVALID (rdvalid),
     .FRDVALID (frdvalid),
@@ -404,8 +402,10 @@ module core_top
     end else begin
       stole <= (stole && i_in) ? (((read_status == s_read2) & RVALID & RREADY) ? 0 : 1) :
                (stole && i_out) ? ((BVALID & BREADY) ? 0 : 1) :
-               fpu_stole ? 1 : 0;
-  end
+               (stole && !(tvalid_once)) ? 1 :
+               ((cpu_state == EXECUTE) && (stole == 0) && (i_in | i_out | i_fadds | i_fsubs | i_fmuls | i_fdivs | i_feqs | i_flts | i_fles | i_fcvtsw | i_fcvtws | i_fsqrts)) ? 1:
+               0;
+    end
   end
 
   // 4. メモリアクセス
