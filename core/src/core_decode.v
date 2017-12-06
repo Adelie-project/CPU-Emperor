@@ -75,6 +75,9 @@ module core_decode
   output reg I_IN,
   output reg I_OUT,
 
+  output reg I_FENCE,
+  output reg I_FENCEI,
+
   output reg RDVALID,
   output reg FRDVALID,
 
@@ -102,7 +105,7 @@ module core_decode
     if(!RST_N) begin
       IMM <= 0;
     end else begin
-      IMM <= (((INST[6:0] == 7'b1100111) || (INST[6:0] == 7'b0000011) || (INST[6:0] == 7'b0010011) || (INST[6:0] == 7'b0000111))) ? {{21{INST[31]}}, INST[30:20]} :
+      IMM <= ((INST[6:0] == 7'b1100111) | (INST[6:0] == 7'b0000011) | (INST[6:0] == 7'b0010011) | (INST[6:0] == 7'b0000111) | (INST[6:0] == 7'b0001111) ) ? {{21{INST[31]}}, INST[30:20]} :
              ((INST[6:0] == 7'b0100011) || (INST[6:0] == 7'b0100111)) ? {{21{INST[31]}}, INST[30:25], INST[11:7]} :
              ((INST[6:0] == 7'b1100011)) ? {{20{INST[31]}}, INST[7], INST[30:25], INST[11:8], 1'b0} :
              ((INST[4:0] == 5'b10111)) ? {INST[31:12], 12'b0000_0000_0000} :
@@ -179,6 +182,8 @@ module core_decode
       I_ROT <= 1'b0;
       I_IN <= 1'b0;
       I_OUT <= 1'b0;
+      I_FENCE <= 1'b0;
+      I_FENCEI <= 1'b0;
     end else begin
       I_ADDI <= (INST[6:0] == 7'b0010011) && (func3 == 3'b000);
       I_SLTI  <= (INST[6:0] == 7'b0010011) && (func3 == 3'b010);
@@ -252,6 +257,9 @@ module core_decode
 
       I_IN <= (INST[6:0] == 7'b0000001) && (func3 == 3'b000);
       I_OUT <= (INST[6:0] == 7'b0000001) && (func3 == 3'b001);
+
+      I_FENCE <= (INST[6:0] == 7'b0001111) && (func3 == 3'b000);
+      I_FENCEI <= (INST[6:0] == 7'b0001111) && (func3 == 3'b001);
     end
   end
 endmodule

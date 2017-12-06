@@ -69,7 +69,7 @@ module core_top
  (* mark_debug = "true" *) wire i_lui, i_auipc, i_jal, i_jalr, i_beq, i_bne,
        i_blt, i_bge, i_bltu, i_bgeu, i_lb, i_lh, i_lw, i_lbu, i_lhu, i_sb, i_sh,
        i_sw, i_addi, i_slti, i_sltiu, i_xori, i_ori, i_andi, i_slli, i_srli, i_srai,
-       i_add, i_sub, i_sll, i_slt, i_sltu, i_xor, i_srl, i_sra, i_or, i_and, i_rot;
+       i_add, i_sub, i_sll, i_slt, i_sltu, i_xor, i_srl, i_sra, i_or, i_and, i_rot, i_fence, i_fencei;
  (* mark_debug = "true" *) wire i_flw, i_fsw, i_fmvsx, i_fsgnjxs;
  (* mark_debug = "true" *) wire i_in, i_out;
 
@@ -237,6 +237,9 @@ module core_top
 
     .I_IN (i_in),
     .I_OUT (i_out),
+
+    .I_FENCE (i_fence),
+    .I_FENCE (i_fencei),
 
     .RDVALID (rdvalid),
     .FRDVALID (frdvalid),
