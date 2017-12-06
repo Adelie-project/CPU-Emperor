@@ -1,73 +1,74 @@
 {
    guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
 #  -string -flagsOSRD
-preplace port rs232_uart -pg 1 -y 640 -defaultsOSRD
-preplace inst core_top_0 -pg 1 -lvl 4 -y 740 -defaultsOSRD
-preplace inst core_fpu_0 -pg 1 -lvl 3 -y 700 -defaultsOSRD
-preplace inst floating_point_0 -pg 1 -lvl 2 -y 110 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 4 -y 460 -defaultsOSRD
-preplace inst floating_point_1 -pg 1 -lvl 2 -y 310 -defaultsOSRD
-preplace inst core_top_0_axi_periph -pg 1 -lvl 5 -y 630 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 4 -y 1150 -defaultsOSRD
-preplace inst floating_point_2 -pg 1 -lvl 2 -y 500 -defaultsOSRD
-preplace inst floating_point_3 -pg 1 -lvl 2 -y 660 -defaultsOSRD
-preplace inst floating_point_4 -pg 1 -lvl 2 -y 1040 -defaultsOSRD
-preplace inst blk_mem_gen_0 -pg 1 -lvl 5 -y 830 -defaultsOSRD
-preplace inst floating_point_5 -pg 1 -lvl 2 -y 1180 -defaultsOSRD
-preplace inst blk_mem_gen_1 -pg 1 -lvl 5 -y 1020 -defaultsOSRD
-preplace inst floating_point_6 -pg 1 -lvl 2 -y 1340 -defaultsOSRD
-preplace inst sim_clk_gen_0 -pg 1 -lvl 1 -y 140 -defaultsOSRD
-preplace inst axi_uartlite_0 -pg 1 -lvl 6 -y 650 -defaultsOSRD
-preplace netloc core_fpu_0_mul_b 1 1 3 250 950 590J 1010 1060
-preplace netloc core_fpu_0_fsqrts_a 1 1 3 240 920 620J 1000 1070
-preplace netloc core_fpu_0_fcvtws_a 1 1 3 260 940 610J 990 1080
-preplace netloc floating_point_3_M_AXIS_RESULT 1 2 1 620
-preplace netloc core_fpu_0_div_a 1 1 3 270 420 NJ 420 1050
-preplace netloc core_fpu_0_addsub_a 1 1 3 220 10 NJ 10 1100
-preplace netloc xlconstant_1_dout 1 4 1 1680J
-preplace netloc core_top_0_MEM_ADDR 1 4 1 1640
-preplace netloc core_top_0_i_fcvtsw 1 2 3 710 1070 NJ 1070 1550
-preplace netloc core_top_0_i_fdivs 1 2 3 670 1200 NJ 1200 1590
-preplace netloc core_fpu_0_fcvtsw_a 1 1 3 270 590 610J 400 1130
-preplace netloc core_fpu_0_div_b 1 1 3 260 410 NJ 410 1070
-preplace netloc core_fpu_0_comp_a 1 1 3 270 400 590J 390 1060
-preplace netloc core_fpu_0_addsub_b 1 1 3 230 20 NJ 20 1090
-preplace netloc clk_wiz_0_locked 1 1 5 220 580 650 150 1140 150 1690 150 1970
-preplace netloc core_top_0_MEM_WE 1 4 1 1610
-preplace netloc blk_mem_gen_1_douta 1 3 2 1150 1010 1600J
-preplace netloc core_top_0_frs1 1 2 3 760 1030 NJ 1030 1500
-preplace netloc core_top_0_rs1 1 2 3 730 1100 NJ 1100 1530
-preplace netloc core_top_0_i_fsubs 1 2 3 670 340 NJ 340 1520
-preplace netloc core_fpu_0_comp_b 1 1 3 240 210 NJ 210 1120
-preplace netloc core_top_0_frs2 1 2 3 750 1060 NJ 1060 1510
-preplace netloc core_top_0_i_feqs 1 2 3 680 1210 NJ 1210 1580
-preplace netloc core_top_0_i_fmuls 1 2 3 680 370 NJ 370 1500
-preplace netloc core_fpu_0_fpu_result 1 3 1 1090
-preplace netloc core_fpu_0_addsub_op 1 1 3 270 200 NJ 200 1080
-preplace netloc core_top_0_i_fsqrts 1 2 3 720 1090 NJ 1090 1540
+preplace port rs232_uart -pg 1 -y 980 -defaultsOSRD
+preplace inst core_top_0 -pg 1 -lvl 4 -y 1100 -defaultsOSRD
+preplace inst core_fpu_0 -pg 1 -lvl 3 -y 1050 -defaultsOSRD
+preplace inst floating_point_0 -pg 1 -lvl 2 -y 580 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 4 -y 780 -defaultsOSRD
+preplace inst floating_point_1 -pg 1 -lvl 2 -y 420 -defaultsOSRD
+preplace inst core_top_0_axi_periph -pg 1 -lvl 5 -y 970 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 4 -y 1510 -defaultsOSRD
+preplace inst floating_point_2 -pg 1 -lvl 2 -y 100 -defaultsOSRD
+preplace inst floating_point_3 -pg 1 -lvl 2 -y 880 -defaultsOSRD
+preplace inst floating_point_4 -pg 1 -lvl 2 -y 1020 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 5 -y 740 -defaultsOSRD
+preplace inst floating_point_5 -pg 1 -lvl 2 -y 1390 -defaultsOSRD
+preplace inst blk_mem_gen_1 -pg 1 -lvl 5 -y 1440 -defaultsOSRD
+preplace inst floating_point_6 -pg 1 -lvl 2 -y 270 -defaultsOSRD
+preplace inst sim_clk_gen_0 -pg 1 -lvl 1 -y 120 -defaultsOSRD
+preplace inst axi_uartlite_0 -pg 1 -lvl 6 -y 990 -defaultsOSRD
+preplace netloc core_fpu_0_mul_b 1 1 3 230 1300 610J 1340 1060
+preplace netloc core_fpu_0_fsqrts_a 1 1 3 270 1480 NJ 1480 1090
+preplace netloc core_fpu_0_fcvtws_a 1 1 3 280 1460 NJ 1460 1080
+preplace netloc floating_point_3_M_AXIS_RESULT 1 2 1 N
+preplace netloc core_fpu_0_div_a 1 1 3 200 20 NJ 20 1130
+preplace netloc core_fpu_0_addsub_a 1 1 3 260 680 NJ 680 1080
+preplace netloc xlconstant_1_dout 1 4 1 1720J
+preplace netloc core_top_0_MEM_ADDR 1 4 1 1690
+preplace netloc core_top_0_i_fcvtsw 1 2 3 700 1490 1170J 1380 1590
+preplace netloc core_top_0_i_fdivs 1 2 3 680 1420 NJ 1420 1630
+preplace netloc core_fpu_0_fcvtsw_a 1 1 3 260 1470 NJ 1470 1100
+preplace netloc core_fpu_0_div_b 1 1 3 220 180 NJ 180 1120
+preplace netloc core_fpu_0_comp_a 1 1 3 280 190 NJ 190 1110
+preplace netloc core_fpu_0_addsub_b 1 1 3 270 690 NJ 690 1070
+preplace netloc clk_wiz_0_locked 1 1 5 200 950 780 130 1160 130 1720 130 2020
+preplace netloc core_top_0_MEM_WE 1 4 1 1660
+preplace netloc blk_mem_gen_1_douta 1 3 2 1200 830 1680J
+preplace netloc core_top_0_frs1 1 2 3 740 1400 NJ 1400 1580
+preplace netloc core_top_0_rs1 1 2 3 720 1440 NJ 1440 1610
+preplace netloc core_top_0_i_fsubs 1 2 3 710 1350 NJ 1350 1600
+preplace netloc core_fpu_0_comp_b 1 1 3 240 710 NJ 710 1100
+preplace netloc core_top_0_frs2 1 2 3 750 1410 NJ 1410 1570
+preplace netloc core_top_0_i_feqs 1 2 3 690 1430 NJ 1430 1620
+preplace netloc core_top_0_i_fmuls 1 2 3 640 1520 1190J 1450 1650
+preplace netloc core_fpu_0_fpu_result 1 3 1 1110
+preplace netloc core_fpu_0_addsub_op 1 1 3 280 700 NJ 700 1060
+preplace netloc core_top_0_exec 1 2 3 770 1390 NJ 1390 1540
+preplace netloc core_top_0_i_fsqrts 1 2 3 670 1530 1180J 1370 1550
 preplace netloc core_top_0_axi_periph_M00_AXI 1 5 1 N
-preplace netloc floating_point_5_M_AXIS_RESULT 1 2 1 640
-preplace netloc core_top_0_MEM_DATA 1 4 1 1620
-preplace netloc floating_point_4_M_AXIS_RESULT 1 2 1 630
-preplace netloc floating_point_1_M_AXIS_RESULT 1 2 1 620
-preplace netloc xlconstant_0_dout 1 4 1 1660J
-preplace netloc core_top_0_i_flts 1 2 3 700 1080 NJ 1080 1560
-preplace netloc clk_wiz_0_clk_out1 1 1 5 230 730 600 130 1150 130 1670 130 1980
+preplace netloc floating_point_5_M_AXIS_RESULT 1 2 1 630
+preplace netloc core_top_0_MEM_DATA 1 4 1 1670
+preplace netloc floating_point_4_M_AXIS_RESULT 1 2 1 610
+preplace netloc floating_point_1_M_AXIS_RESULT 1 2 1 650
+preplace netloc xlconstant_0_dout 1 4 1 NJ
+preplace netloc core_top_0_i_flts 1 2 3 660 1510 1200J 1460 1640
+preplace netloc clk_wiz_0_clk_out1 1 1 5 210 1090 600 110 1180 110 1700 110 2030
 preplace netloc axi_uartlite_0_UART 1 6 1 N
-preplace netloc core_top_0_stole 1 2 3 770 1050 NJ 1050 1490
-preplace netloc blk_mem_gen_0_douta 1 3 2 1130 980 1630J
-preplace netloc core_top_0_I_MEM_ADDR 1 4 1 1650
-preplace netloc core_top_0_i_fadds 1 2 3 760 360 NJ 360 1490
-preplace netloc core_fpu_0_comp_op 1 1 3 260 220 NJ 220 1110
-preplace netloc floating_point_0_M_AXIS_RESULT 1 2 1 660
-preplace netloc core_top_0_interface_aximm 1 4 1 1680
-preplace netloc floating_point_6_M_AXIS_RESULT 1 2 1 660
-preplace netloc core_fpu_0_tvalid_once 1 3 1 1110
-preplace netloc core_fpu_0_mul_a 1 1 3 270 970 600J 980 1050
-preplace netloc floating_point_2_M_AXIS_RESULT 1 2 1 620
-preplace netloc core_top_0_i_fcvtws 1 2 3 740 1040 NJ 1040 1520
-preplace netloc core_top_0_i_fles 1 2 3 690 1220 NJ 1220 1570
-levelinfo -pg 1 0 120 430 920 1330 1830 2080 2200 -top 0 -bot 1410
+preplace netloc core_top_0_stole 1 2 3 780 1380 1160J 1340 1530
+preplace netloc blk_mem_gen_0_douta 1 3 2 1190 730 1710J
+preplace netloc core_top_0_I_MEM_ADDR 1 4 1 1690
+preplace netloc core_top_0_i_fadds 1 2 3 650 1450 1150J 850 1600
+preplace netloc core_fpu_0_comp_op 1 1 3 250 720 NJ 720 1090
+preplace netloc floating_point_0_M_AXIS_RESULT 1 2 1 630
+preplace netloc core_top_0_interface_aximm 1 4 1 N
+preplace netloc floating_point_6_M_AXIS_RESULT 1 2 1 620
+preplace netloc core_fpu_0_tvalid_once 1 3 1 1190
+preplace netloc core_fpu_0_mul_a 1 1 3 220 1320 600J 1330 1070
+preplace netloc floating_point_2_M_AXIS_RESULT 1 2 1 710
+preplace netloc core_top_0_i_fcvtws 1 2 3 760 1360 NJ 1360 1560
+preplace netloc core_top_0_i_fles 1 2 3 730 1370 1140J 860 1530
+levelinfo -pg 1 0 100 440 930 1370 1880 2130 2250 -top 0 -bot 1550
 ",
 }
 {
