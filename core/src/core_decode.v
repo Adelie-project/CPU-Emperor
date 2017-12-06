@@ -95,7 +95,7 @@ module core_decode
       RDVALID <= 0;
       FRDVALID <= 0;
     end else begin
-      RDVALID <= !(I_BEQ | I_BNE | I_BLT | I_BGE | I_BLTU | I_BGEU | I_SB | I_SH | I_SW | I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW);
+      RDVALID <= !(I_BEQ | I_BNE | I_BLT | I_BGE | I_BLTU | I_BGEU | I_SB | I_SH | I_SW | I_FSW | I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW);
       FRDVALID <= (I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW);
     end
   end
