@@ -107,6 +107,9 @@ module core_fpu
  (* mark_debug = "true" *) reg addsub_f, mul_f, div_f, comp_f, fcvtsw_f, fcvtws_f, fsqrts_f;
 
   always @(posedge CLK) begin
+    if (!RST_N) begin
+      fpu_result <= 0;
+    end else begin
     fpu_result <= (i_fadds | i_fsubs) ? addsub_r_tdata :
                   i_fmuls ? mul_r_tdata :
                   i_fdivs ? div_r_tdata :
@@ -114,7 +117,8 @@ module core_fpu
                   i_fcvtsw ? fcvtsw_r_tdata :
                   i_fcvtws ? fcvtws_r_tdata :
                   i_fsqrts ? fsqrts_r_tdata :
-                  32'b0;
+                  fpu_result;
+    end
   end
 
   // 浮動小数点実行
