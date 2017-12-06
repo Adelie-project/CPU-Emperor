@@ -1,0 +1,1 @@
+-debug "typical" "test_top" -s "test_top.sim" 

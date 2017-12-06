@@ -1,0 +1,11 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Adelie/core/src/test_top.v" into library work
+INFO: [VRFC 10-311] analyzing module test_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Adelie/core/src/core_top.v" into library work
+INFO: [VRFC 10-311] analyzing module core_top
+INFO: [VRFC 10-2458] undeclared symbol r0, assumed default net type wire [/home/yamaguchi/CPU-Adelie/core/src/core_top.v:230]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Adelie/core/src/core_decode.v" into library work
+INFO: [VRFC 10-311] analyzing module core_decode
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Adelie/core/src/core_alu.v" into library work
+INFO: [VRFC 10-311] analyzing module core_alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Adelie/core/src/core_reg.v" into library work
+INFO: [VRFC 10-311] analyzing module core_reg
