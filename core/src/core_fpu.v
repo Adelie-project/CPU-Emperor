@@ -19,6 +19,7 @@ module core_fpu
     input [31:0] frs2,
     output reg [31:0] fpu_result,
     output reg tvalid_once,
+    input exec,
     input stole,
 
     // 浮動小数点
@@ -104,6 +105,7 @@ module core_fpu
 
   );
 
+  localparam EXECUTE = 7'b0001000;
  (* mark_debug = "true" *) reg addsub_f, mul_f, div_f, comp_f, fcvtsw_f, fcvtws_f, fsqrts_f;
 
   always @(posedge CLK) begin
@@ -127,7 +129,7 @@ module core_fpu
     addsub_b_tdata <= frs2;
     addsub_a_tdata <= frs1;
     addsub_op_tdata <= i_fsubs ? 6'b000001 : 6'b000000;
-    if ((i_fadds | i_fsubs) && (!stole) && !(addsub_r_tready) ) begin
+    if ((i_fadds | i_fsubs) && (!stole) && !(addsub_r_tready) && exec) begin
       addsub_a_tvalid <= 1'b1;
       addsub_b_tvalid <= 1'b1;
       addsub_op_tvalid <= 1'b1;
@@ -148,7 +150,7 @@ module core_fpu
   always @(posedge CLK) begin
     mul_a_tdata <= frs1;
     mul_b_tdata <= frs2;
-    if ((i_fmuls) && (!stole) && !(mul_r_tready) ) begin
+    if ((i_fmuls) && (!stole) && !(mul_r_tready) && exec) begin
       mul_a_tvalid <= 1'b1;
       mul_b_tvalid <= 1'b1;
       mul_r_tready <= 1'b1;
@@ -166,7 +168,7 @@ module core_fpu
   always @(posedge CLK) begin
     div_a_tdata <= frs1;
     div_b_tdata <= frs2;
-    if ((i_fdivs) && (!stole) && !(div_r_tready) ) begin
+    if ((i_fdivs) && (!stole) && !(div_r_tready) && exec) begin
       div_a_tvalid <= 1'b1;
       div_b_tvalid <= 1'b1;
       div_r_tready <= 1'b1;
@@ -187,7 +189,7 @@ module core_fpu
       comp_op_tdata <= i_feqs ? 6'b010100 :
                        i_flts ? 6'b001100:
                        6'b011100;
-    if ((i_feqs | i_flts | i_fles) && (!stole) && !(comp_r_tready) ) begin
+    if ((i_feqs | i_flts | i_fles) && (!stole) && !(comp_r_tready) && exec) begin
       comp_a_tvalid <= 1'b1;
       comp_b_tvalid <= 1'b1;
       comp_op_tvalid <= 1'b1;
@@ -207,7 +209,7 @@ module core_fpu
   // FCVTSW int to float
   always @(posedge CLK) begin
     fcvtsw_a_tdata <= rs1;
-    if ((i_fcvtsw) && (!stole) && !(fcvtsw_r_tready) ) begin
+    if ((i_fcvtsw) && (!stole) && !(fcvtsw_r_tready) && exec) begin
       fcvtsw_a_tvalid <= 1'b1;
       fcvtsw_r_tready <= 1'b1;
     end else begin
@@ -221,7 +223,7 @@ module core_fpu
   // FCVTWS float to int
   always @(posedge CLK) begin
     fcvtws_a_tdata <= frs1;
-    if ((i_fcvtws) && (!stole) && !(fcvtws_r_tready) ) begin
+    if ((i_fcvtws) && (!stole) && !(fcvtws_r_tready) && exec) begin
       fcvtws_a_tvalid <= 1'b1;
       fcvtws_r_tready <= 1'b1;
     end else begin
@@ -235,7 +237,7 @@ module core_fpu
   // FSQRTS
   always @(posedge CLK) begin
     fsqrts_a_tdata <= frs1;
-    if ((i_fsqrts) && (!stole) && !(fsqrts_r_tready) ) begin
+    if ((i_fsqrts) && (!stole) && !(fsqrts_r_tready) && exec) begin
       fsqrts_a_tvalid <= 1'b1;
       fsqrts_r_tready <= 1'b1;
     end else begin
@@ -265,7 +267,7 @@ module core_fpu
       fsqrts_f <= fsqrts_r_tvalid;
 
       tvalid_once <= (tvalid_once) ? 0 :
-                     (stole && ((!addsub_f && addsub_r_tvalid) || (!mul_f && mul_r_tvalid) || (!div_f && div_r_tvalid) || (!comp_f && comp_r_tvalid) || (!fcvtsw_f && fcvtsw_r_tvalid) || (!fcvtws_f && fcvtws_r_tvalid) || (!fsqrts_f && fsqrts_r_tvalid))) ? 1:
+                     ((!addsub_f && addsub_r_tvalid) || (!mul_f && mul_r_tvalid) || (!div_f && div_r_tvalid) || (!comp_f && comp_r_tvalid) || (!fcvtsw_f && fcvtsw_r_tvalid) || (!fcvtws_f && fcvtws_r_tvalid) || (!fsqrts_f && fsqrts_r_tvalid)) ? 1:
                      0;
     end
   end

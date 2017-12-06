@@ -54,6 +54,7 @@ module core_top
     output wire [31:0] frs2,
     input wire [31:0] fpu_result,
     input wire tvalid_once,
+    output reg exec,
     output reg stole
   );
 
@@ -77,11 +78,11 @@ module core_top
  // UARTから来るデータ
  (* mark_debug = "true" *) reg [7:0] rdata;
 
+ // cpu state
+ (* mark_debug = "true" *) reg [6:0] cpu_state;
+
  // RDとFRDに有効な値が入っているか
  (* mark_debug = "true" *) wire rdvalid, frdvalid;
-
-  // CPU state
-  (* mark_debug = "true" *) reg [6:0] cpu_state;
 
   // in命令のデータを書き込むか
   (* mark_debug = "true" *) wire ine;
@@ -116,36 +117,44 @@ module core_top
   always @(posedge CLK) begin
     if(!RST_N) begin
       cpu_state <= IDLE;
+      exec <= 0;
       total_cnt <= 0;
     end else begin
       if (stole) begin
         cpu_state <= cpu_state;
+        exec <= exec;
       end else begin
         case(cpu_state)
           IDLE:
           begin
             cpu_state <= FETCH;
+            exec <= 0;
           end
           FETCH:
           begin
             cpu_state <= DECODE;
+            exec <= 0;
             total_cnt <= total_cnt + 1;
           end
           DECODE:
           begin
             cpu_state <= EXECUTE;
+            exec <= 1;
           end
           EXECUTE:
           begin
             cpu_state <= MEMORY;
+            exec <= 0;
           end
           MEMORY:
           begin
             cpu_state <= WRITEBACK;
+            exec <= 0;
           end
           WRITEBACK:
           begin
             cpu_state <= FETCH;
+            exec <= 0;
           end
         endcase
     end
