@@ -25,4 +25,13 @@ fsgnjxs %f6, %f25, %f25 ; %f6 = 1.0
 fsgnjxs %f7, %f27, %f27 ; %f7 = 12.0
 fsgnjxs %f8, %f24, %f25 ; %f8 = -7.0
 set %r20, $0x12345678
-rot %r21, %r20
+rot %r1, %r20
+set %r2, $0x00000100
+fcvtws %r24, %f24
+fcvtws %r25, %f25
+fcvtws %r26, %f26
+fcvtws %r27, %f27
+fcvtws %r28, %f28
+fcvtws %r29, %f29
+fcvtws %r30, %f30
+fcvtws %r31, %f31

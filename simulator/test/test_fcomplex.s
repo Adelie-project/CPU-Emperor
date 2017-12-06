@@ -42,9 +42,9 @@ set %r20, $0x12345678
 rot %r1, %r20
 set %r2, $0x00000100
 fsw %r2, %f20, $0
-fsw %r2, %r21, $4
+fsw %r2, %f21, $4
 fsw %r2, %f22, $8
-fsw %r23, %f23
+fsw %r2, %f23, $12
 fcvtws %r24, %f24
 fcvtws %r25, %f25
 fcvtws %r26, %f26
