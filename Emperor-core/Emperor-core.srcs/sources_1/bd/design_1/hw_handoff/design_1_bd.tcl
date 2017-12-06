@@ -379,7 +379,7 @@ CONFIG.CONST_VAL {0} \
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins axi_uartlite_0/s_axi_aclk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins blk_mem_gen_1/clka] [get_bd_pins core_fpu_0/CLK] [get_bd_pins core_top_0/CLK] [get_bd_pins core_top_0_axi_periph/ACLK] [get_bd_pins core_top_0_axi_periph/M00_ACLK] [get_bd_pins core_top_0_axi_periph/S00_ACLK] [get_bd_pins floating_point_0/aclk] [get_bd_pins floating_point_1/aclk] [get_bd_pins floating_point_2/aclk] [get_bd_pins floating_point_3/aclk] [get_bd_pins floating_point_4/aclk] [get_bd_pins floating_point_5/aclk] [get_bd_pins floating_point_6/aclk] [get_bd_pins sim_clk_gen_0/clk]
   connect_bd_net -net clk_wiz_0_locked [get_bd_pins axi_uartlite_0/s_axi_aresetn] [get_bd_pins core_fpu_0/RST_N] [get_bd_pins core_top_0/RST_N] [get_bd_pins core_top_0_axi_periph/ARESETN] [get_bd_pins core_top_0_axi_periph/M00_ARESETN] [get_bd_pins core_top_0_axi_periph/S00_ARESETN] [get_bd_pins floating_point_0/aresetn] [get_bd_pins floating_point_1/aresetn] [get_bd_pins floating_point_2/aresetn] [get_bd_pins floating_point_3/aresetn] [get_bd_pins floating_point_4/aresetn] [get_bd_pins floating_point_5/aresetn] [get_bd_pins floating_point_6/aresetn] [get_bd_pins sim_clk_gen_0/sync_rst]
   connect_bd_net -net core_fpu_0_fpu_result [get_bd_pins core_fpu_0/fpu_result] [get_bd_pins core_top_0/fpu_result]
-  connect_bd_net -net core_fpu_0_fpu_stole [get_bd_pins core_fpu_0/fpu_stole] [get_bd_pins core_top_0/fpu_stole]
+  connect_bd_net -net core_fpu_0_tvalid_once [get_bd_pins core_fpu_0/tvalid_once] [get_bd_pins core_top_0/tvalid_once]
   connect_bd_net -net core_top_0_I_MEM_ADDR [get_bd_pins blk_mem_gen_0/addra] [get_bd_pins core_top_0/I_MEM_ADDR]
   connect_bd_net -net core_top_0_MEM_ADDR [get_bd_pins blk_mem_gen_1/addra] [get_bd_pins core_top_0/MEM_ADDR]
   connect_bd_net -net core_top_0_MEM_DATA [get_bd_pins blk_mem_gen_1/dina] [get_bd_pins core_top_0/MEM_DATA]
@@ -397,6 +397,7 @@ CONFIG.CONST_VAL {0} \
   connect_bd_net -net core_top_0_i_fsqrts [get_bd_pins core_fpu_0/i_fsqrts] [get_bd_pins core_top_0/i_fsqrts]
   connect_bd_net -net core_top_0_i_fsubs [get_bd_pins core_fpu_0/i_fsubs] [get_bd_pins core_top_0/i_fsubs]
   connect_bd_net -net core_top_0_rs1 [get_bd_pins core_fpu_0/rs1] [get_bd_pins core_top_0/rs1]
+  connect_bd_net -net core_top_0_stole [get_bd_pins core_fpu_0/stole] [get_bd_pins core_top_0/stole]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins blk_mem_gen_0/wea] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins blk_mem_gen_1/ena] [get_bd_pins xlconstant_1/dout]
 
@@ -408,8 +409,8 @@ CONFIG.CONST_VAL {0} \
 #  -string -flagsOSRD
 preplace port rs232_uart -pg 1 -y 640 -defaultsOSRD
 preplace inst core_top_0 -pg 1 -lvl 4 -y 740 -defaultsOSRD
-preplace inst floating_point_0 -pg 1 -lvl 2 -y 110 -defaultsOSRD
 preplace inst core_fpu_0 -pg 1 -lvl 3 -y 700 -defaultsOSRD
+preplace inst floating_point_0 -pg 1 -lvl 2 -y 110 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 4 -y 470 -defaultsOSRD
 preplace inst floating_point_1 -pg 1 -lvl 2 -y 310 -defaultsOSRD
 preplace inst core_top_0_axi_periph -pg 1 -lvl 5 -y 630 -defaultsOSRD
@@ -423,55 +424,54 @@ preplace inst blk_mem_gen_1 -pg 1 -lvl 5 -y 1020 -defaultsOSRD
 preplace inst floating_point_6 -pg 1 -lvl 2 -y 1340 -defaultsOSRD
 preplace inst sim_clk_gen_0 -pg 1 -lvl 1 -y 140 -defaultsOSRD
 preplace inst axi_uartlite_0 -pg 1 -lvl 6 -y 650 -defaultsOSRD
-preplace netloc core_fpu_0_mul_b 1 1 3 260 970 590J 980 1020
-preplace netloc core_fpu_0_fsqrts_a 1 1 3 270 960 NJ 960 1030
-preplace netloc core_fpu_0_fcvtws_a 1 1 3 250 920 610J 970 1050
+preplace netloc core_fpu_0_mul_b 1 1 3 250 950 600J 1000 1030
+preplace netloc core_fpu_0_fsqrts_a 1 1 3 240 920 620J 980 1050
+preplace netloc core_fpu_0_fcvtws_a 1 1 3 260 940 610J 970 1060
 preplace netloc floating_point_3_M_AXIS_RESULT 1 2 1 610
-preplace netloc core_fpu_0_div_a 1 1 3 260 410 NJ 410 1050
-preplace netloc core_fpu_0_addsub_a 1 1 3 220 10 NJ 10 1080
+preplace netloc core_fpu_0_div_a 1 1 3 260 410 NJ 410 1060
+preplace netloc core_fpu_0_addsub_a 1 1 3 220 10 NJ 10 1090
 preplace netloc xlconstant_1_dout 1 4 1 1620J
 preplace netloc core_top_0_MEM_ADDR 1 4 1 1580
-preplace netloc core_top_0_i_fcvtsw 1 2 3 740 1040 NJ 1040 1460
-preplace netloc core_top_0_i_fdivs 1 2 3 680 1050 NJ 1050 1520
-preplace netloc core_fpu_0_fcvtsw_a 1 1 3 270 590 600J 440 1030
-preplace netloc core_fpu_0_div_b 1 1 3 270 420 NJ 420 1040
-preplace netloc core_fpu_0_comp_a 1 1 3 270 400 NJ 400 1020
-preplace netloc core_fpu_0_addsub_b 1 1 3 230 20 NJ 20 1070
-preplace netloc clk_wiz_0_locked 1 1 5 220 580 640 150 1110 150 1620 150 1900
+preplace netloc core_top_0_i_fcvtsw 1 2 3 680 1200 NJ 1200 1530
+preplace netloc core_top_0_i_fdivs 1 2 3 710 1040 NJ 1040 1500
+preplace netloc core_fpu_0_fcvtsw_a 1 1 3 270 590 600J 430 1040
+preplace netloc core_fpu_0_div_b 1 1 3 270 420 NJ 420 1050
+preplace netloc core_fpu_0_comp_a 1 1 3 270 400 NJ 400 1030
+preplace netloc core_fpu_0_addsub_b 1 1 3 230 20 NJ 20 1080
+preplace netloc clk_wiz_0_locked 1 1 5 220 580 640 150 1120 150 1630 150 1910
 preplace netloc core_top_0_MEM_WE 1 4 1 1560
-preplace netloc blk_mem_gen_1_douta 1 3 2 1120 1010 1550J
-preplace netloc core_top_0_frs1 1 2 3 750 1030 NJ 1030 1450
-preplace netloc core_top_0_rs1 1 2 3 720 1100 NJ 1100 1480
-preplace netloc core_top_0_i_fsubs 1 2 3 680 370 NJ 370 1440
-preplace netloc core_fpu_0_comp_b 1 1 3 250 210 NJ 210 1100
-preplace netloc core_top_0_frs2 1 2 3 760 1020 NJ 1020 1440
-preplace netloc core_top_0_i_feqs 1 2 3 730 1010 1100J 990 1470
-preplace netloc core_top_0_i_fmuls 1 2 3 660 1080 NJ 1080 1540
-preplace netloc core_fpu_0_fpu_result 1 3 1 1060
-preplace netloc core_fpu_0_addsub_op 1 1 3 270 200 NJ 200 1060
-preplace netloc core_top_0_i_fsqrts 1 2 3 710 1090 NJ 1090 1490
+preplace netloc blk_mem_gen_1_douta 1 3 2 1130 1010 1550J
+preplace netloc core_top_0_frs1 1 2 3 750 1030 NJ 1030 1460
+preplace netloc core_top_0_rs1 1 2 3 740 1050 NJ 1050 1470
+preplace netloc core_top_0_i_fsubs 1 2 3 750 370 NJ 370 1480
+preplace netloc core_fpu_0_comp_b 1 1 3 240 210 NJ 210 1110
+preplace netloc core_top_0_frs2 1 2 3 760 1020 NJ 1020 1450
+preplace netloc core_top_0_i_feqs 1 2 3 690 1070 NJ 1070 1520
+preplace netloc core_top_0_i_fmuls 1 2 3 710 360 NJ 360 1500
+preplace netloc core_fpu_0_fpu_result 1 3 1 1080
+preplace netloc core_fpu_0_addsub_op 1 1 3 270 200 NJ 200 1070
+preplace netloc core_top_0_i_fsqrts 1 2 3 720 1100 NJ 1100 1490
 preplace netloc core_top_0_axi_periph_M00_AXI 1 5 1 N
-preplace netloc floating_point_5_M_AXIS_RESULT 1 2 1 630
+preplace netloc floating_point_5_M_AXIS_RESULT 1 2 1 650
 preplace netloc core_top_0_MEM_DATA 1 4 1 1570
-preplace netloc floating_point_4_M_AXIS_RESULT 1 2 1 620
-preplace netloc floating_point_1_M_AXIS_RESULT 1 2 1 620
+preplace netloc floating_point_4_M_AXIS_RESULT 1 2 1 630
+preplace netloc floating_point_1_M_AXIS_RESULT 1 2 1 630
 preplace netloc xlconstant_0_dout 1 4 1 1600J
-preplace netloc core_top_0_i_flts 1 2 3 690 1070 NJ 1070 1510
-preplace netloc clk_wiz_0_clk_out1 1 1 5 230 730 590 130 1120 130 1610 130 1910
-preplace netloc core_fpu_0_fpu_stole 1 3 1 1080
+preplace netloc core_top_0_i_flts 1 2 3 670 1090 NJ 1090 1540
+preplace netloc clk_wiz_0_clk_out1 1 1 5 230 730 590 130 1130 130 1610 130 1920
 preplace netloc axi_uartlite_0_UART 1 6 1 N
-preplace netloc blk_mem_gen_0_douta 1 3 2 1100 960 1590J
+preplace netloc blk_mem_gen_0_douta 1 3 2 1110 970 1590J
 preplace netloc core_top_0_I_MEM_ADDR 1 4 1 1590
-preplace netloc core_top_0_i_fadds 1 2 3 660 360 NJ 360 1460
-preplace netloc core_fpu_0_comp_op 1 1 3 260 220 NJ 220 1090
+preplace netloc core_top_0_i_fadds 1 2 3 760 380 NJ 380 1470
+preplace netloc core_fpu_0_comp_op 1 1 3 260 220 NJ 220 1100
 preplace netloc floating_point_0_M_AXIS_RESULT 1 2 1 650
-preplace netloc core_top_0_interface_aximm 1 4 1 N
-preplace netloc floating_point_6_M_AXIS_RESULT 1 2 1 650
-preplace netloc core_fpu_0_mul_a 1 1 3 240 940 600J 990 1040
+preplace netloc core_top_0_interface_aximm 1 4 1 1620
+preplace netloc floating_point_6_M_AXIS_RESULT 1 2 1 660
+preplace netloc core_fpu_0_mul_a 1 1 3 270 970 590J 990 1040
 preplace netloc floating_point_2_M_AXIS_RESULT 1 2 1 610
-preplace netloc core_top_0_i_fcvtws 1 2 3 670 1200 NJ 1200 1530
-preplace netloc core_top_0_i_fles 1 2 3 700 1060 NJ 1060 1500
-levelinfo -pg 1 0 120 430 890 1280 1760 2010 2140 -top 0 -bot 1410
+preplace netloc core_top_0_i_fcvtws 1 2 3 730 1060 NJ 1060 1480
+preplace netloc core_top_0_i_fles 1 2 3 700 1080 NJ 1080 1510
+levelinfo -pg 1 0 120 430 900 1290 1770 2020 2140 -top 0 -bot 1410
 ",
 }
 

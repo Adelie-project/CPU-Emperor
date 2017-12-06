@@ -1,1 +1,0 @@
--debug "typical" "test_decode" -s "test_decode.sim" 

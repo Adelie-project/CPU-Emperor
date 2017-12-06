@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-//Date        : Wed Dec  6 23:41:21 2017
+//Date        : Thu Dec  7 00:42:16 2017
 //Host        : ispc2016 running 64-bit Ubuntu 14.04.5 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -53,7 +53,6 @@ module design_1
   wire core_fpu_0_fcvtws_a_TREADY;
   wire core_fpu_0_fcvtws_a_TVALID;
   wire [31:0]core_fpu_0_fpu_result;
-  wire core_fpu_0_fpu_stole;
   wire [31:0]core_fpu_0_fsqrts_a_TDATA;
   wire core_fpu_0_fsqrts_a_TREADY;
   wire core_fpu_0_fsqrts_a_TVALID;
@@ -63,6 +62,7 @@ module design_1
   wire [31:0]core_fpu_0_mul_b_TDATA;
   wire core_fpu_0_mul_b_TREADY;
   wire core_fpu_0_mul_b_TVALID;
+  wire core_fpu_0_tvalid_once;
   wire [31:0]core_top_0_I_MEM_ADDR;
   wire [31:0]core_top_0_MEM_ADDR;
   wire [31:0]core_top_0_MEM_DATA;
@@ -114,6 +114,7 @@ module design_1
   wire [3:0]core_top_0_interface_aximm_WSTRB;
   wire core_top_0_interface_aximm_WVALID;
   wire [31:0]core_top_0_rs1;
+  wire core_top_0_stole;
   wire [31:0]floating_point_0_M_AXIS_RESULT_TDATA;
   wire floating_point_0_M_AXIS_RESULT_TREADY;
   wire floating_point_0_M_AXIS_RESULT_TVALID;
@@ -224,7 +225,6 @@ module design_1
         .fcvtws_r_tready(floating_point_4_M_AXIS_RESULT_TREADY),
         .fcvtws_r_tvalid(floating_point_4_M_AXIS_RESULT_TVALID),
         .fpu_result(core_fpu_0_fpu_result),
-        .fpu_stole(core_fpu_0_fpu_stole),
         .frs1(core_top_0_frs1),
         .frs2(core_top_0_frs2),
         .fsqrts_a_tdata(core_fpu_0_fsqrts_a_TDATA),
@@ -252,7 +252,9 @@ module design_1
         .mul_r_tdata(floating_point_6_M_AXIS_RESULT_TDATA),
         .mul_r_tready(floating_point_6_M_AXIS_RESULT_TREADY),
         .mul_r_tvalid(floating_point_6_M_AXIS_RESULT_TVALID),
-        .rs1(core_top_0_rs1));
+        .rs1(core_top_0_rs1),
+        .stole(core_top_0_stole),
+        .tvalid_once(core_fpu_0_tvalid_once));
   design_1_core_top_0_0 core_top_0
        (.ARADDR(core_top_0_interface_aximm_ARADDR),
         .ARREADY(core_top_0_interface_aximm_ARREADY),
@@ -280,7 +282,6 @@ module design_1
         .WSTRB(core_top_0_interface_aximm_WSTRB),
         .WVALID(core_top_0_interface_aximm_WVALID),
         .fpu_result(core_fpu_0_fpu_result),
-        .fpu_stole(core_fpu_0_fpu_stole),
         .frs1(core_top_0_frs1),
         .frs2(core_top_0_frs2),
         .i_fadds(core_top_0_i_fadds),
@@ -293,7 +294,9 @@ module design_1
         .i_fmuls(core_top_0_i_fmuls),
         .i_fsqrts(core_top_0_i_fsqrts),
         .i_fsubs(core_top_0_i_fsubs),
-        .rs1(core_top_0_rs1));
+        .rs1(core_top_0_rs1),
+        .stole(core_top_0_stole),
+        .tvalid_once(core_fpu_0_tvalid_once));
   design_1_core_top_0_axi_periph_1 core_top_0_axi_periph
        (.ACLK(clk_wiz_0_clk_out1),
         .ARESETN(clk_wiz_0_locked),
