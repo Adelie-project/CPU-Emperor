@@ -1,9 +1,0 @@
-0.6
-2016.4
-Jan 23 2017
-19:19:20
-/home/yamaguchi/CPU-Emperor/core/src/core_alu.v,1512568582,verilog,,/home/yamaguchi/CPU-Emperor/core/src/core_reg.v,,core_alu,,,,,,,,
-/home/yamaguchi/CPU-Emperor/core/src/core_decode.v,1512569758,verilog,,/home/yamaguchi/CPU-Emperor/core/src/core_alu.v,,core_decode,,,,,,,,
-/home/yamaguchi/CPU-Emperor/core/src/core_reg.v,1512555132,verilog,,,,core_reg,,,,,,,,
-/home/yamaguchi/CPU-Emperor/core/src/core_top.v,1512581844,verilog,,/home/yamaguchi/CPU-Emperor/core/src/core_decode.v,,core_top,,,,,,,,
-/home/yamaguchi/CPU-Emperor/core/src/test_top.v,1512548340,verilog,,/home/yamaguchi/CPU-Emperor/core/src/core_top.v,,test_top,,,,,,,,

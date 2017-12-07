@@ -62,6 +62,10 @@ module design_1_core_top_0_0 (
   MEM_DATA,
   MEM_ADDR,
   MEM_WE,
+  CSR_IN,
+  CSR_DATA,
+  CSR_ADDR,
+  CSR_WE,
   ARADDR,
   ARREADY,
   ARVALID,
@@ -108,6 +112,10 @@ input wire [31 : 0] MEM_IN;
 output wire [31 : 0] MEM_DATA;
 output wire [31 : 0] MEM_ADDR;
 output wire MEM_WE;
+input wire [31 : 0] CSR_IN;
+output wire [31 : 0] CSR_DATA;
+output wire [11 : 0] CSR_ADDR;
+output wire CSR_WE;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 interface_aximm ARADDR" *)
 output wire [3 : 0] ARADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 interface_aximm ARREADY" *)
@@ -169,6 +177,10 @@ output wire stole;
     .MEM_DATA(MEM_DATA),
     .MEM_ADDR(MEM_ADDR),
     .MEM_WE(MEM_WE),
+    .CSR_IN(CSR_IN),
+    .CSR_DATA(CSR_DATA),
+    .CSR_ADDR(CSR_ADDR),
+    .CSR_WE(CSR_WE),
     .ARADDR(ARADDR),
     .ARREADY(ARREADY),
     .ARVALID(ARVALID),

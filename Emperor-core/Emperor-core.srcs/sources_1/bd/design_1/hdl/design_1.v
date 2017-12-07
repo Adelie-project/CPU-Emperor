@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-//Date        : Thu Dec  7 03:26:18 2017
+//Date        : Thu Dec  7 15:58:57 2017
 //Host        : ispc2016 running 64-bit Ubuntu 14.04.5 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,10 +9,16 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=15,numNonXlnxBlks=2,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=4,synth_mode=Global}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=18,numReposBlks=16,numNonXlnxBlks=2,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=5,synth_mode=Global}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
-   (rs232_uart_rxd,
+   (default_sysclk_300_clk_n,
+    default_sysclk_300_clk_p,
+    reset,
+    rs232_uart_rxd,
     rs232_uart_txd);
+  input default_sysclk_300_clk_n;
+  input default_sysclk_300_clk_p;
+  input reset;
   input rs232_uart_rxd;
   output rs232_uart_txd;
 
@@ -20,6 +26,7 @@ module design_1
   wire axi_uartlite_0_UART_TxD;
   wire [31:0]blk_mem_gen_0_douta;
   wire [31:0]blk_mem_gen_1_douta;
+  wire [31:0]blk_mem_gen_2_douta;
   wire clk_wiz_0_clk_out1;
   wire clk_wiz_0_locked;
   wire [31:0]core_fpu_0_addsub_a_TDATA;
@@ -63,6 +70,9 @@ module design_1
   wire core_fpu_0_mul_b_TREADY;
   wire core_fpu_0_mul_b_TVALID;
   wire core_fpu_0_tvalid_once;
+  wire [11:0]core_top_0_CSR_ADDR;
+  wire [31:0]core_top_0_CSR_DATA;
+  wire core_top_0_CSR_WE;
   wire [31:0]core_top_0_I_MEM_ADDR;
   wire [31:0]core_top_0_MEM_ADDR;
   wire [31:0]core_top_0_MEM_DATA;
@@ -116,6 +126,8 @@ module design_1
   wire core_top_0_interface_aximm_WVALID;
   wire [31:0]core_top_0_rs1;
   wire core_top_0_stole;
+  wire default_sysclk_300_1_CLK_N;
+  wire default_sysclk_300_1_CLK_P;
   wire [31:0]floating_point_0_M_AXIS_RESULT_TDATA;
   wire floating_point_0_M_AXIS_RESULT_TREADY;
   wire floating_point_0_M_AXIS_RESULT_TVALID;
@@ -137,10 +149,14 @@ module design_1
   wire [31:0]floating_point_6_M_AXIS_RESULT_TDATA;
   wire floating_point_6_M_AXIS_RESULT_TREADY;
   wire floating_point_6_M_AXIS_RESULT_TVALID;
+  wire reset_1;
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
 
   assign axi_uartlite_0_UART_RxD = rs232_uart_rxd;
+  assign default_sysclk_300_1_CLK_N = default_sysclk_300_clk_n;
+  assign default_sysclk_300_1_CLK_P = default_sysclk_300_clk_p;
+  assign reset_1 = reset;
   assign rs232_uart_txd = axi_uartlite_0_UART_TxD;
   design_1_axi_uartlite_0_0 axi_uartlite_0
        (.rx(axi_uartlite_0_UART_RxD),
@@ -177,6 +193,18 @@ module design_1
         .douta(blk_mem_gen_1_douta),
         .ena(xlconstant_1_dout),
         .wea(core_top_0_MEM_WE));
+  design_1_blk_mem_gen_2_0 blk_mem_gen_2
+       (.addra(core_top_0_CSR_ADDR),
+        .clka(clk_wiz_0_clk_out1),
+        .dina(core_top_0_CSR_DATA),
+        .douta(blk_mem_gen_2_douta),
+        .wea(core_top_0_CSR_WE));
+  design_1_clk_wiz_0_0 clk_wiz_0
+       (.clk_in1_n(default_sysclk_300_1_CLK_N),
+        .clk_in1_p(default_sysclk_300_1_CLK_P),
+        .clk_out1(clk_wiz_0_clk_out1),
+        .locked(clk_wiz_0_locked),
+        .reset(reset_1));
   design_1_core_fpu_0_0 core_fpu_0
        (.CLK(clk_wiz_0_clk_out1),
         .RST_N(clk_wiz_0_locked),
@@ -268,6 +296,10 @@ module design_1
         .BRESP(core_top_0_interface_aximm_BRESP),
         .BVALID(core_top_0_interface_aximm_BVALID),
         .CLK(clk_wiz_0_clk_out1),
+        .CSR_ADDR(core_top_0_CSR_ADDR),
+        .CSR_DATA(core_top_0_CSR_DATA),
+        .CSR_IN(blk_mem_gen_2_douta),
+        .CSR_WE(core_top_0_CSR_WE),
         .I_MEM_ADDR(core_top_0_I_MEM_ADDR),
         .I_MEM_IN(blk_mem_gen_0_douta),
         .MEM_ADDR(core_top_0_MEM_ADDR),
@@ -422,9 +454,6 @@ module design_1
         .s_axis_b_tdata(core_fpu_0_mul_b_TDATA),
         .s_axis_b_tready(core_fpu_0_mul_b_TREADY),
         .s_axis_b_tvalid(core_fpu_0_mul_b_TVALID));
-  design_1_sim_clk_gen_0_0 sim_clk_gen_0
-       (.clk(clk_wiz_0_clk_out1),
-        .sync_rst(clk_wiz_0_locked));
   design_1_xlconstant_0_0 xlconstant_0
        (.dout(xlconstant_0_dout));
   design_1_xlconstant_1_0 xlconstant_1

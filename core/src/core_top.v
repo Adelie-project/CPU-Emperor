@@ -14,6 +14,12 @@ module core_top
     output [31:0] MEM_ADDR,
     output MEM_WE,
 
+    // CSRをメモリで管理する
+    input [31:0] CSR_IN,
+    output [31:0] CSR_DATA,
+    output [11:0] CSR_ADDR,
+    output CSR_WE,
+
     // In/Out
     output reg [3:0] ARADDR,
     input wire ARREADY,
@@ -63,6 +69,7 @@ module core_top
  (* mark_debug = "true" *) wire [4:0] rd_num, rs1_num, rs2_num;
  (* mark_debug = "true" *) wire [31:0] imm, rs2;
  (* mark_debug = "true" *) wire [4:0] frd_num, frs1_num, frs2_num;
+ (* mark_debug = "true" *) wire [11:0] csr_num;
 
  // ALUの結果を入れる
  (* mark_debug = "true" *) wire [31:0] alu_result;
@@ -73,6 +80,7 @@ module core_top
        i_sw, i_addi, i_slti, i_sltiu, i_xori, i_ori, i_andi, i_slli, i_srli, i_srai,
        i_add, i_sub, i_sll, i_slt, i_sltu, i_xor, i_srl, i_sra, i_or, i_and, i_rot, i_fence, i_fencei;
  (* mark_debug = "true" *) wire i_flw, i_fsw, i_fmvsx, i_fsgnjxs;
+ (* mark_debug = "true" *) wire i_csrrw, i_csrrs, i_csrrc, i_csrrwi, i_csrrsi, i_csrrci;
  (* mark_debug = "true" *) wire i_in, i_out;
 
  // UARTから来るデータ
@@ -82,7 +90,7 @@ module core_top
  (* mark_debug = "true" *) reg [6:0] cpu_state;
 
  // RDとFRDに有効な値が入っているか
- (* mark_debug = "true" *) wire rdvalid, frdvalid;
+ (* mark_debug = "true" *) wire rdvalid, frdvalid, csrvalid;
 
   // in命令のデータを書き込むか
   (* mark_debug = "true" *) wire ine;
@@ -178,6 +186,7 @@ module core_top
     .RD_NUM (rd_num),
     .RS1_NUM (rs1_num),
     .RS2_NUM (rs2_num),
+    .CSR_NUM (csr_num),
 
     .FRD_NUM (frd_num),
     .FRS1_NUM (frs1_num),
@@ -247,9 +256,16 @@ module core_top
 
     .I_FENCE (i_fence),
     .I_FENCEI (i_fencei),
+    .I_CSRRW (i_csrrw),
+    .I_CSRRS (i_csrrs),
+    .I_CSRRC (i_csrrc),
+    .I_CSRRWI (i_csrrwi),
+    .I_CSRRSI (i_csrrsi),
+    .I_CSRRCI (i_csrrci),
 
     .RDVALID (rdvalid),
     .FRDVALID (frdvalid),
+    .CSRVALID (csrvalid),
 
     .I_ROT (i_rot)
   );
@@ -426,6 +442,11 @@ module core_top
                    (i_fsw) ? {frs2}:
                    32'd0;
   assign MEM_WE = (i_sb | i_sh | i_sw | i_fsw) && (cpu_state == MEMORY && !stole);
+  assign CSR_ADDR = (csrvalid) ? csr_num : 0;
+  assign CSR_DATA = (i_csrrw) ? rs1 :
+                    (i_csrrwi) ? imm : 
+                    32'b0;
+  assign CSR_WE = (i_csrrw | i_csrrwi) && (cpu_state == WRITEBACK && !stole);
  
   // 5. 書き戻し
   
@@ -462,13 +483,20 @@ module core_top
                    (i_auipc) ? pc_add_imm:
                    (i_jal | i_jalr) ? pc_add_4:
                    (i_fadds | i_fsubs | i_fmuls | i_fdivs | i_feqs | i_flts | i_fles | i_fcvtsw | i_fcvtws | i_fsqrts) ? fpu_result:
-                     alu_result;
-  assign wr_addr = rd_num;
+                   (i_csrrw | i_csrrwi) ? CSR_IN :
+                   (i_csrrs) ? CSR_IN & rs1 :
+                   // よくわからず。立っていたら0にするということ？
+                   // FIXME
+                   (i_csrrc) ? CSR_IN | rs1:
+                   (i_csrrsi) ? CSR_IN & imm :
+                   // よくわからず。立っていたら0にするということ？
+                   // FIXME
+                   (i_csrrci) ? CSR_IN | imm:
+                     alu_result; 
   assign fwr_addr = frd_num;
   assign ine = (i_in & (cpu_state == WRITEBACK) & !stole);
 
-  core_reg u_core_reg
-  (
+  core_reg u_core_reg (
     .RST_N (RST_N),
     .CLK (CLK),
 

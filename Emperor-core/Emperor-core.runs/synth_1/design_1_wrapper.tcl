@@ -5,7 +5,6 @@
 set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xcku040-ffva1156-2-e
 
 set_param project.singleFileAddWarning.threshold 0
@@ -22,7 +21,17 @@ set_property ip_output_repo /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-cor
 set_property ip_cache_permissions {read write} [current_project]
 add_files /home/yamaguchi/CPU-Emperor/simulator/min-rt/min-rt.coe
 add_files /home/yamaguchi/CPU-Emperor/simulator/test/fib_rec.coe
-read_verilog -library xil_defaultlib /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v
+add_files /home/yamaguchi/CPU-Emperor/simulator/test/test_f.coe
+add_files /home/yamaguchi/CPU-Emperor/simulator/test/mandelbrot.coe
+add_files /home/yamaguchi/CPU-Emperor/simulator/test/test_io.coe
+read_verilog -library xil_defaultlib {
+  /home/yamaguchi/CPU-Emperor/core/src/core_fpu.v
+  /home/yamaguchi/CPU-Emperor/core/src/core_decode.v
+  /home/yamaguchi/CPU-Emperor/core/src/core_alu.v
+  /home/yamaguchi/CPU-Emperor/core/src/core_reg.v
+  /home/yamaguchi/CPU-Emperor/core/src/core_top.v
+  /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v
+}
 add_files /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/design_1.bd
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_0_1/design_1_floating_point_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_0_1_1/design_1_floating_point_0_1_ooc.xdc]
@@ -33,15 +42,12 @@ set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Em
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_floating_point_5_0_1/design_1_floating_point_5_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0_1/design_1_blk_mem_gen_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_1_0_1/design_1_blk_mem_gen_1_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0_1/design_1_rst_clk_wiz_0_100M_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0_1/design_1_rst_clk_wiz_0_100M_0.xdc]
-set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_0_1/design_1_rst_clk_wiz_0_100M_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/design_1_ooc.xdc]
 set_property is_locked true [get_files /home/yamaguchi/CPU-Emperor/Emperor-core/Emperor-core.srcs/sources_1/bd/design_1/design_1.bd]
 

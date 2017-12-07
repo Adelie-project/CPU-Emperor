@@ -8,6 +8,7 @@ module core_decode
   output wire [4:0] RD_NUM,
   output wire [4:0] RS1_NUM,
   output wire [4:0] RS2_NUM,
+  output wire [11:0] CSR_NUM,
 
   output wire [4:0] FRD_NUM,
   output wire [4:0] FRS1_NUM,
@@ -74,12 +75,19 @@ module core_decode
 
   output reg I_IN,
   output reg I_OUT,
+  output reg I_CSRRW,
+  output reg I_CSRRS,
+  output reg I_CSRRC,
+  output reg I_CSRRWI,
+  output reg I_CSRRSI,
+  output reg I_CSRRCI,
 
   output reg I_FENCE,
   output reg I_FENCEI,
 
   output reg RDVALID,
   output reg FRDVALID,
+  output reg CSRVALID,
 
   output reg I_ROT
 );
@@ -94,9 +102,11 @@ module core_decode
     if(!RST_N) begin
       RDVALID <= 0;
       FRDVALID <= 0;
+      CSRVALID <= 0;
     end else begin
-      RDVALID <= !(I_BEQ | I_BNE | I_BLT | I_BGE | I_BLTU | I_BGEU | I_SB | I_SH | I_SW | I_FSW | I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW | I_FSQRTS);
+      RDVALID <= !(I_BEQ | I_BNE | I_BLT | I_BGE | I_BLTU | I_BGEU | I_SB | I_SH | I_SW | I_FSW | I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW | I_FSQRTS | I_IN | I_OUT);
       FRDVALID <= (I_FLW | I_FADDS | I_FSUBS | I_FMULS | I_FDIVS | I_FSGNJXS | I_FMVSX | I_FCVTSW | I_FSQRTS);
+      CSRVALID <= (I_CSRRW | I_CSRRS | I_CSRRC | I_CSRRWI | I_CSRRSI | I_CSRRCI);
     end
   end
 
@@ -110,6 +120,7 @@ module core_decode
              ((INST[6:0] == 7'b1100011)) ? {{20{INST[31]}}, INST[7], INST[30:25], INST[11:8], 1'b0} :
              ((INST[4:0] == 5'b10111)) ? {INST[31:12], 12'b0000_0000_0000} :
              ((INST[6:0] == 7'b1101111)) ? {{12{INST[31]}}, INST[19:12], INST[20], INST[30:21], 1'b0} :
+             ((INST[6:0] == 7'b1110011)) ? {27'b0, INST[19:15]} :
              32'd0;
     end
   end
@@ -117,6 +128,7 @@ module core_decode
   assign RD_NUM = INST[11:7];
   assign RS1_NUM = INST[19:15];
   assign RS2_NUM = INST[24:20];
+  assign CSR_NUM = INST[31:20];
 
   assign FRD_NUM = INST[11:7];
   assign FRS1_NUM = INST[19:15];
@@ -184,6 +196,12 @@ module core_decode
       I_OUT <= 1'b0;
       I_FENCE <= 1'b0;
       I_FENCEI <= 1'b0;
+      I_CSRRW <= 1'b0;
+      I_CSRRS <= 1'b0;
+      I_CSRRC <= 1'b0;
+      I_CSRRWI <= 1'b0;
+      I_CSRRSI <= 1'b0;
+      I_CSRRCI <= 1'b0;
     end else begin
       I_ADDI <= (INST[6:0] == 7'b0010011) && (func3 == 3'b000);
       I_SLTI  <= (INST[6:0] == 7'b0010011) && (func3 == 3'b010);
@@ -260,6 +278,13 @@ module core_decode
 
       I_FENCE <= (INST[6:0] == 7'b0001111) && (func3 == 3'b000);
       I_FENCEI <= (INST[6:0] == 7'b0001111) && (func3 == 3'b001);
+
+      I_CSRRW <= (INST[6:0] == 7'b1110011) && (func3 == 3'b001);
+      I_CSRRS <= (INST[6:0] == 7'b1110011) && (func3 == 3'b010);
+      I_CSRRC <= (INST[6:0] == 7'b1110011) && (func3 == 3'b011);
+      I_CSRRWI <= (INST[6:0] == 7'b1110011) && (func3 == 3'b101);
+      I_CSRRSI <= (INST[6:0] == 7'b1110011) && (func3 == 3'b110);
+      I_CSRRCI <= (INST[6:0] == 7'b1110011) && (func3 == 3'b111);
     end
   end
 endmodule
