@@ -1,5 +1,10 @@
 #! /bin/sh
 
+xvlog ../src/test_csr.v ../src/core_csr.v
+xelab -debug typical test_csr -s test_csr.sim
+xsim --runall test_csr.sim
+rm -rf *
+
 xvlog ../src/test_top.v ../src/core_top.v ../src/core_decode.v ../src/core_alu.v ../src/core_reg.v
 xelab -debug typical test_top -s test_top.sim
 xsim --runall test_top.sim
