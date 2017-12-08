@@ -1,7 +1,0 @@
-Running: xsim.dir/test_fpu.sim/xsimk -runall -simmode gui -wdb test_fpu.sim.wdb -simrunnum 0 -socket 39816
-Design successfully loaded
-Design Loading Memory Usage: 49584 KB (Peak: 49628 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 131324 KB (Peak: 196860 KB)
-Simulation CPU Usage: 0 ms

@@ -1,1 +1,0 @@
--debug "typical" "test_fpu" -s "test_fpu.sim" 

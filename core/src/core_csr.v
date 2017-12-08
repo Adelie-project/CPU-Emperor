@@ -26,15 +26,29 @@ module core_csr
    reg [31:0]         mscratch;
    reg [31:0]         mepc;
    reg [31:0]         mcause;
-   reg [31:0]         mbadaddr;
-   wire [31:0]         mip;
+   reg [31:0]         mtval;
+   reg [31:0]         mip;
    // Machine Protction and Trnslation
-   wire [31:0]         mbase;
-   wire [31:0]         mbound;
-   wire [31:0]         mibase;
-   wire [31:0]         mibound;
-   wire [31:0]         mdbase;
-   wire [31:0]         mdbound;
+   wire [31:0]         pmpcfg0;
+   wire [31:0]         pmpcfg1;
+   wire [31:0]         pmpcfg2;
+   wire [31:0]         pmpcfg3;
+   wire [31:0]         pmpaddr0;
+   wire [31:0]         pmpaddr1;
+   wire [31:0]         pmpaddr2;
+   wire [31:0]         pmpaddr3;
+   wire [31:0]         pmpaddr4;
+   wire [31:0]         pmpaddr5;
+   wire [31:0]         pmpaddr6;
+   wire [31:0]         pmpaddr7;
+   wire [31:0]         pmpaddr8;
+   wire [31:0]         pmpaddr9;
+   wire [31:0]         pmpaddr10;
+   wire [31:0]         pmpaddr11;
+   wire [31:0]         pmpaddr12;
+   wire [31:0]         pmpaddr13;
+   wire [31:0]         pmpaddr14;
+   wire [31:0]         pmpaddr15;
    // Machine Counter/Timer
    reg [63:0]         mcycle;
    reg [63:0]         minstret;
@@ -198,6 +212,93 @@ module core_csr
       end
    end
 
+   // mscratch(340h)
+   always @(posedge CLK) begin
+      if(!RST_N) begin
+         mscratch <= 0;
+      end else begin
+         if(CSR_WE & (CSR_ADDR == 12'h340)) begin
+            mscratch <= CSR_WDATA;
+         end
+      end
+   end
+
+   // mepc(341h)
+   // Machine exceptionが起きた時の仮想アドレス、今はとりあえず0
+   // TODO
+   always @(posedge CLK) begin
+     if(!RST_N) begin
+       mepc <= 0;
+     end else begin
+       if(CSR_WE & (CSR_ADDR == 12'h341)) begin
+         mepc <= 0;
+       end
+     end
+   end
+
+   // mcause(342h)
+   // Machine exceptionが起きた時にexception code,今は0
+   // TODO
+   always @(posedge CLK) begin
+     if(!RST_N) begin
+       mcause <= 0;
+     end else begin
+       if(CSR_WE & (CSR_ADDR == 12'h342)) begin
+         mcause <= 0;
+       end
+     end
+   end
+
+   // mtval(343h)
+   // execption specific information
+   // TODO
+   always @(posedge CLK) begin
+     if(!RST_N) begin
+       mtval <= 0;
+     end else begin
+       if(CSR_WE & (CSR_ADDR == 12'h343)) begin
+         mtval <= 0;
+       end
+     end
+   end
+
+   // mip(344h)
+   // pending exception の情報
+   // TODO
+   always @(posedge CLK) begin
+     if(!RST_N) begin
+       mip <= 0;
+     end else begin
+       if(CSR_WE & (CSR_ADDR == 12'h344)) begin
+         mip <= 0;
+       end
+     end
+   end
+
+   // Physical memory protection
+   // よくわからん、全部0じゃだめかね
+   // pmpcfg0(3A0)
+   assign pmpcfg0 = 32'b0;
+   assign pmpcfg1 = 32'b0;
+   assign pmpcfg2 = 32'b0;
+   assign pmpcfg3 = 32'b0;
+   assign pmpaddr0 = 32'b0;
+   assign pmpaddr1 = 32'b0;
+   assign pmpaddr2 = 32'b0;
+   assign pmpaddr3 = 32'b0;
+   assign pmpaddr4 = 32'b0;
+   assign pmpaddr5 = 32'b0;
+   assign pmpaddr6 = 32'b0;
+   assign pmpaddr7 = 32'b0;
+   assign pmpaddr8 = 32'b0;
+   assign pmpaddr9 = 32'b0;
+   assign pmpaddr10 = 32'b0;
+   assign pmpaddr11 = 32'b0;
+   assign pmpaddr12 = 32'b0;
+   assign pmpaddr13 = 32'b0;
+   assign pmpaddr14 = 32'b0;
+   assign pmpaddr15 = 32'b0;
+
    // 出力
    always @(*) begin
       case(CSR_ADDR)
@@ -217,15 +318,29 @@ module core_csr
         12'h340: CSR_RDATA <= mscratch;
         12'h341: CSR_RDATA <= mepc;
         12'h342: CSR_RDATA <= mcause;
-        12'h343: CSR_RDATA <= mbadaddr;
+        12'h343: CSR_RDATA <= mtval;
         12'h344: CSR_RDATA <= mip;
         // Machine Protection and Translation
-        12'h380: CSR_RDATA <= mbase;
-        12'h381: CSR_RDATA <= mbound;
-        12'h382: CSR_RDATA <= mibase;
-        12'h383: CSR_RDATA <= mibound;
-        12'h384: CSR_RDATA <= mdbase;
-        12'h385: CSR_RDATA <= mdbound;
+        12'h3A0: CSR_RDATA <= pmpcfg0;
+        12'h3A1: CSR_RDATA <= pmpcfg1;
+        12'h3A2: CSR_RDATA <= pmpcfg2;
+        12'h3A3: CSR_RDATA <= pmpcfg3;
+        12'h3B0: CSR_RDATA <= pmpaddr0;
+        12'h3B1: CSR_RDATA <= pmpaddr1;
+        12'h3B2: CSR_RDATA <= pmpaddr2;
+        12'h3B3: CSR_RDATA <= pmpaddr3;
+        12'h3B4: CSR_RDATA <= pmpaddr4;
+        12'h3B5: CSR_RDATA <= pmpaddr5;
+        12'h3B6: CSR_RDATA <= pmpaddr6;
+        12'h3B7: CSR_RDATA <= pmpaddr7;
+        12'h3B8: CSR_RDATA <= pmpaddr8;
+        12'h3B9: CSR_RDATA <= pmpaddr9;
+        12'h3BA: CSR_RDATA <= pmpaddr10;
+        12'h3BB: CSR_RDATA <= pmpaddr11;
+        12'h3BC: CSR_RDATA <= pmpaddr12;
+        12'h3BD: CSR_RDATA <= pmpaddr13;
+        12'h3BE: CSR_RDATA <= pmpaddr14;
+        12'h3BF: CSR_RDATA <= pmpaddr15;
         // Machine Counter/Timer
         12'hB00: CSR_RDATA <= mcycle[31:0];
         12'hB02: CSR_RDATA <= minstret[31:0];
