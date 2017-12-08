@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# xsim v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Fri Dec  8 22:40:21 2017
+# Process ID: 8330
+# Current directory: /home/yamaguchi/CPU-Emperor/core/debug
+# Command line: xsim -mode tcl -source {xsim.dir/test_fpu.sim/xsim_script.tcl}
+# Log file: /home/yamaguchi/CPU-Emperor/core/debug/xsim.log
+# Journal file: /home/yamaguchi/CPU-Emperor/core/debug/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/test_fpu.sim/xsim_script.tcl
+run -all

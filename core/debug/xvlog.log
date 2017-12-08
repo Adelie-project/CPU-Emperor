@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Emperor/core/src/test_fpu.v" into library work
+INFO: [VRFC 10-311] analyzing module test_fpu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/yamaguchi/CPU-Emperor/core/src/core_fpu.v" into library work
+INFO: [VRFC 10-311] analyzing module core_fpu
