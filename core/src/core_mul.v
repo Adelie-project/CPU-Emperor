@@ -37,7 +37,7 @@ module core_mul (
   reg [41:0] mul_stage3[3:0];
   reg [50:0] mul_stage4[1:0];
   reg [67:0] mul_stage5;
-  wire [63:0] last_in_mul_and_mulh;
+  reg [63:0] last_in_mul_and_mulh;
 
   wire agreement;
 
@@ -185,11 +185,10 @@ module core_mul (
       mul_trace_valid[6] <= 0;
     end else if(!int_mul_r_tvalid) begin
       mul_stage5 <= { 16'b0, mul_stage4[0] } + { mul_stage4[1], 16'b0 };
+      last_in_mul_and_mulh <= { 16'b0, mul_stage4[0] } + { mul_stage4[1], 16'b0 } + add_const_in_mul_and_mulh;
       mul_trace_valid[6] <= mul_trace_valid[5];
     end
   end
-
-  assign last_in_mul_and_mulh = mul_stage5 + add_const_in_mul_and_mulh;
 
   always @(posedge CLK) begin
     if(!RST_N) begin
