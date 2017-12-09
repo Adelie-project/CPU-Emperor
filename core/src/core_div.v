@@ -48,9 +48,11 @@ module core_div (
   reg [35:0] div_stage15[5:0];
   reg [33:0] div_stage16[5:0];
 
-  wire agreement;
+  wire int_div_agreement;
+  wire int_div_stole;
 
-  assign agreement = int_div_a_tready && int_div_a_tvalid && int_div_b_tready && int_div_b_tvalid && int_div_op_tready && int_div_op_tvalid;
+  assign int_div_agreement = int_div_a_tready && int_div_a_tvalid && int_div_b_tready && int_div_b_tvalid && int_div_op_tready && int_div_op_tvalid;
+  assign int_div_stole = !int_div_r_tready && int_div_r_tvalid;
 
   // 開始時制御信号
   always @(posedge CLK) begin
@@ -59,11 +61,11 @@ module core_div (
       int_div_b_tready <= 0;
       int_div_op_tready <= 0;
     end else begin
-      int_div_a_tready <= agreement ? 0 :
+      int_div_a_tready <= int_div_agreement ? 0 :
                           int_div_r_tvalid ? 0 : 1;
-      int_div_b_tready <= agreement ? 0 :
+      int_div_b_tready <= int_div_agreement ? 0 :
                           int_div_r_tvalid ? 0 : 1;
-      int_div_op_tready <= agreement ? 0 :
+      int_div_op_tready <= int_div_agreement ? 0 :
                            int_div_r_tvalid ? 0 : 1;
     end
   end
@@ -78,23 +80,23 @@ module core_div (
       div_trace_op[0] <= 0;
       div_trace_valid[0] <= 0;
     end else begin
-      div_stage0[0] <= agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU) ? int_div_a_tdata
+      div_stage0[0] <= int_div_agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU) ? int_div_a_tdata
                                     : int_div_a_tdata[31] ? { 0 - {2'b11, int_div_a_tdata[31:0]}, 30'b0 }  : int_div_a_tdata)
                        : div_stage0[0];
-      div_stage0[1] <= agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? { int_div_b_tdata, 30'b0 }
+      div_stage0[1] <= int_div_agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? { int_div_b_tdata, 30'b0 }
                                     : int_div_b_tdata[31] ? { 0 - {2'b11, int_div_b_tdata[31:0]}, 30'b0 } : { int_div_b_tdata, 30'b0 })
                        : div_stage0[1];
-      div_trace_a_sign[0] <= agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? 0 : int_div_a_tdata[31]) : div_trace_a_sign[0];
-      div_trace_b_sign[0] <= agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? 0 : int_div_b_tdata[31]) : div_trace_b_sign[0];
-      div_trace_op[0] <= agreement ? int_div_op_tdata : div_trace_op[0];
-      div_trace_valid[0] <= agreement ? 1 : 0;
+      div_trace_a_sign[0] <= int_div_agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? 0 : int_div_a_tdata[31]) : div_trace_a_sign[0];
+      div_trace_b_sign[0] <= int_div_agreement ? ((int_div_op_tdata == I_DIVU || int_div_op_tdata == I_REMU)? 0 : int_div_b_tdata[31]) : div_trace_b_sign[0];
+      div_trace_op[0] <= int_div_agreement ? int_div_op_tdata : div_trace_op[0];
+      div_trace_valid[0] <= int_div_agreement ? 1 : 0;
     end
   end
 
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[1] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       div_stage1[0] <= div_stage0[0];
       div_stage1[1] <= div_stage0[0] - div_stage0[1];
       div_stage1[2] <= div_stage0[0] - { div_stage0[1], 1'b0 };
@@ -112,7 +114,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[2] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage1[3][63]) begin
         div_stage2[0] <= div_stage1[3];
         div_stage2[1] <= div_stage1[3] - div_stage1[5];
@@ -149,7 +151,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[3] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage2[3][61]) begin
         div_stage3[0] <= div_stage2[3];
         div_stage3[1] <= div_stage2[3] - div_stage2[5];
@@ -186,7 +188,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[4] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage3[3][59]) begin
         div_stage4[0] <= div_stage3[3];
         div_stage4[1] <= div_stage3[3] - div_stage3[5];
@@ -223,7 +225,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[5] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage4[3][57]) begin
         div_stage5[0] <= div_stage4[3];
         div_stage5[1] <= div_stage4[3] - div_stage4[5];
@@ -260,7 +262,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[6] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage5[3][55]) begin
         div_stage6[0] <= div_stage5[3];
         div_stage6[1] <= div_stage5[3] - div_stage5[5];
@@ -297,7 +299,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[7] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage6[3][53]) begin
         div_stage7[0] <= div_stage6[3];
         div_stage7[1] <= div_stage6[3] - div_stage6[5];
@@ -334,7 +336,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[8] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage7[3][51]) begin
         div_stage8[0] <= div_stage7[3];
         div_stage8[1] <= div_stage7[3] - div_stage7[5];
@@ -371,7 +373,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[9] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage8[3][49]) begin
         div_stage9[0] <= div_stage8[3];
         div_stage9[1] <= div_stage8[3] - div_stage8[5];
@@ -408,7 +410,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[10] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage9[3][47]) begin
         div_stage10[0] <= div_stage9[3];
         div_stage10[1] <= div_stage9[3] - div_stage9[5];
@@ -445,7 +447,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[11] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage10[3][45]) begin
         div_stage11[0] <= div_stage10[3];
         div_stage11[1] <= div_stage10[3] - div_stage10[5];
@@ -482,7 +484,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[12] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage11[3][43]) begin
         div_stage12[0] <= div_stage11[3];
         div_stage12[1] <= div_stage11[3] - div_stage11[5];
@@ -519,7 +521,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[13] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage12[3][41]) begin
         div_stage13[0] <= div_stage12[3];
         div_stage13[1] <= div_stage12[3] - div_stage12[5];
@@ -556,7 +558,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[14] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage13[3][39]) begin
         div_stage14[0] <= div_stage13[3];
         div_stage14[1] <= div_stage13[3] - div_stage13[5];
@@ -593,7 +595,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[15] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage14[3][37]) begin
         div_stage15[0] <= div_stage14[3];
         div_stage15[1] <= div_stage14[3] - div_stage14[5];
@@ -631,7 +633,7 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       div_trace_valid[16] <= 0;
-    end else if(!int_div_r_tvalid) begin
+    end else if(!int_div_stole) begin
       if(!div_stage15[3][35]) begin
         div_stage16[0] <= div_stage15[3];
         div_stage16[1] <= div_stage15[3] - div_stage15[5];
@@ -671,41 +673,43 @@ module core_div (
   always @(posedge CLK) begin
     if(!RST_N) begin
       int_div_r_tvalid <= 0;
-    end else if(!int_div_r_tvalid) begin
-      //例外処理
-      if (div_stage16[5] == 0) begin
-        int_div_r_tdata <= (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? 32'hffffffff : div_stage16[0];
-      end else if ((div_trace_op[16] == I_DIV || div_trace_op[16] == I_REM)
-                    && div_trace_a_sign[16] && (div_stage16[0] == 32'h80000000)
-                    && div_trace_a_sign[16] && (div_stage16[0] == 32'h80000000)
-                    && div_trace_b_sign[16] && (div_stage16[4] == 0'b1)) begin
-        int_div_r_tdata <= (div_trace_op[16] == I_DIV) ? 32'hffffffff : 0;
-      end else if(!div_stage16[3][33]) begin
-        int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b11 }
-                                                                                 : 0 - div_stage16[3])
-                            : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b11 }
-                            : div_stage16[3];
+    end else begin
+      if(!int_div_stole) begin
+        //例外処理
+        if (div_stage16[5] == 0) begin
+          int_div_r_tdata <= (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? 32'hffffffff : div_stage16[0];
+        end else if ((div_trace_op[16] == I_DIV || div_trace_op[16] == I_REM)
+                      && div_trace_a_sign[16] && (div_stage16[0] == 32'h80000000)
+                      && div_trace_a_sign[16] && (div_stage16[0] == 32'h80000000)
+                      && div_trace_b_sign[16] && (div_stage16[4] == 0'b1)) begin
+          int_div_r_tdata <= (div_trace_op[16] == I_DIV) ? 32'hffffffff : 0;
+        end else if(!div_stage16[3][33]) begin
+          int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b11 }
+                                                                                   : 0 - div_stage16[3])
+                              : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b11 }
+                              : div_stage16[3];
 
-      end else if(!div_stage16[2][33]) begin
-        int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b10 }
-                                                                                 : 0 - div_stage16[2])
-                            : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b10 }
-                            : div_stage16[2];
-      end else if(!div_stage16[1][33]) begin
-        int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b01 }
-                                                                                 : 0 - div_stage16[1])
-                            : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b01 }
-                            : div_stage16[1];
+        end else if(!div_stage16[2][33]) begin
+          int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b10 }
+                                                                                   : 0 - div_stage16[2])
+                              : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b10 }
+                              : div_stage16[2];
+        end else if(!div_stage16[1][33]) begin
+          int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b01 }
+                                                                                   : 0 - div_stage16[1])
+                              : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b01 }
+                              : div_stage16[1];
 
-      end else begin
-        int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b00 }
-                                                                                 : 0 - div_stage16[0])
-                            : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b00 }
-                            : div_stage16[0];
+        end else begin
+          int_div_r_tdata <=  (div_r_sign) ? ( (div_trace_op[16] == I_DIV) ? 0 - { div_stage16[4][31:2], 2'b00 }
+                                                                                   : 0 - div_stage16[0])
+                              : (div_trace_op[16] == I_DIV || div_trace_op[16] == I_DIVU) ? { div_stage16[4][31:2], 2'b00 }
+                              : div_stage16[0];
+        end
       end
+      int_div_r_tvalid <= (int_div_r_tready && int_div_r_tvalid) ? 0
+                          : (int_div_r_tvalid | div_trace_valid[16]);
     end
-    int_div_r_tvalid <= (int_div_r_tready && int_div_r_tvalid) ? 0
-                        : (int_div_r_tvalid | div_trace_valid[16]);
   end
 
 endmodule

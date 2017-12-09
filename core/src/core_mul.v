@@ -30,18 +30,21 @@ module core_mul (
   reg [31:0] mul_a;
   reg [31:0] mul_b;
   reg [6:0] mul_trace_valid;
+  reg [1:0] mul_trace_op[6:0];
 
   reg [31:0] mul_ab[31:0];
-  reg [33:0] mul_stage1[15:0];
-  reg [36:0] mul_stage2[7:0];
-  reg [41:0] mul_stage3[3:0];
-  reg [50:0] mul_stage4[1:0];
-  reg [67:0] mul_stage5;
+  reg [33:0] mul_stage2[15:0];
+  reg [36:0] mul_stage3[7:0];
+  reg [41:0] mul_stage4[3:0];
+  reg [50:0] mul_stage5[1:0];
+  reg [67:0] mul_stage6;
   reg [63:0] last_in_mul_and_mulh;
 
-  wire agreement;
+  wire int_mul_agreement;
+  wire int_mul_stole;
 
-  assign agreement = int_mul_a_tready && int_mul_a_tvalid && int_mul_b_tready && int_mul_b_tvalid && int_mul_op_tready && int_mul_op_tvalid;
+  assign int_mul_agreement = int_mul_a_tready && int_mul_a_tvalid && int_mul_b_tready && int_mul_b_tvalid && int_mul_op_tready && int_mul_op_tvalid;
+  assign int_mul_stole = !int_mul_r_tready && int_mul_r_tvalid;
 
   // 開始時制御信号
   always @(posedge CLK) begin
@@ -50,11 +53,11 @@ module core_mul (
       int_mul_b_tready <= 0;
       int_mul_op_tready <= 0;
     end else begin
-      int_mul_a_tready <= agreement ? 0 :
+      int_mul_a_tready <= int_mul_agreement ? 0 :
                           int_mul_r_tvalid ? 0 : 1;
-      int_mul_b_tready <= agreement ? 0 :
+      int_mul_b_tready <= int_mul_agreement ? 0 :
                           int_mul_r_tvalid ? 0 : 1;
-      int_mul_op_tready <= agreement ? 0 :
+      int_mul_op_tready <= int_mul_agreement ? 0 :
                            int_mul_r_tvalid ? 0 : 1;
     end
   end
@@ -64,24 +67,26 @@ module core_mul (
     if(!RST_N) begin
       mul_a <= 0;
       mul_b <= 0;
+      mul_trace_op[0] <= 0;
       mul_trace_valid[0] <= 0;
     end else begin
-      mul_a <= agreement ? (int_mul_op_tdata == I_MULHU ?
+      mul_a <= int_mul_agreement ? (int_mul_op_tdata == I_MULHU ?
                             {  int_mul_a_tdata[31], int_mul_a_tdata[30:0] } :
                             { !int_mul_a_tdata[31], int_mul_a_tdata[30:0] } )
                : mul_a;
-      mul_b <= agreement ? ( (int_mul_op_tdata == I_MULHU  || int_mul_op_tdata == I_MULHSU) ?
+      mul_b <= int_mul_agreement ? ( (int_mul_op_tdata == I_MULHU  || int_mul_op_tdata == I_MULHSU) ?
                             {  int_mul_b_tdata[31], int_mul_b_tdata[30:0] } :
                             { !int_mul_b_tdata[31], int_mul_b_tdata[30:0] } )
                : mul_b;
-      mul_trace_valid[0] <= agreement ? 1 : 0;
+      mul_trace_op[0] <= int_mul_agreement ? int_mul_op_tdata : mul_trace_op[0];
+      mul_trace_valid[0] <= int_mul_agreement ? 1 : 0;
     end
   end
 
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[1] <= 0;
-    end else if(!int_mul_r_tvalid) begin
+    end else if(!int_mul_stole) begin
       mul_ab[0] <= mul_b[0] ? mul_a : 0;
       mul_ab[1] <= mul_b[1] ? mul_a : 0;
       mul_ab[2] <= mul_b[2] ? mul_a : 0;
@@ -114,6 +119,7 @@ module core_mul (
       mul_ab[29] <= mul_b[29] ? mul_a : 0;
       mul_ab[30] <= mul_b[30] ? mul_a : 0;
       mul_ab[31] <= mul_b[31] ? mul_a : 0;
+      mul_trace_op[1] <= mul_trace_op[0];
       mul_trace_valid[1] <= mul_trace_valid[0];
     end
   end
@@ -121,23 +127,24 @@ module core_mul (
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[2] <= 0;
-    end else if(!int_mul_r_tvalid) begin
-      mul_stage1[0] <= { 1'b0, mul_ab[0] } + { mul_ab[1], 1'b0 };
-      mul_stage1[1] <= { 1'b0, mul_ab[2] } + { mul_ab[3], 1'b0 };
-      mul_stage1[2] <= { 1'b0, mul_ab[4] } + { mul_ab[5], 1'b0 };
-      mul_stage1[3] <= { 1'b0, mul_ab[6] } + { mul_ab[7], 1'b0 };
-      mul_stage1[4] <= { 1'b0, mul_ab[8] } + { mul_ab[9], 1'b0 };
-      mul_stage1[5] <= { 1'b0, mul_ab[10] } + { mul_ab[11], 1'b0 };
-      mul_stage1[6] <= { 1'b0, mul_ab[12] } + { mul_ab[13], 1'b0 };
-      mul_stage1[7] <= { 1'b0, mul_ab[14] } + { mul_ab[15], 1'b0 };
-      mul_stage1[8] <= { 1'b0, mul_ab[16] } + { mul_ab[17], 1'b0 };
-      mul_stage1[9] <= { 1'b0, mul_ab[18] } + { mul_ab[19], 1'b0 };
-      mul_stage1[10] <= { 1'b0, mul_ab[20] } + { mul_ab[21], 1'b0 };
-      mul_stage1[11] <= { 1'b0, mul_ab[22] } + { mul_ab[23], 1'b0 };
-      mul_stage1[12] <= { 1'b0, mul_ab[24] } + { mul_ab[25], 1'b0 };
-      mul_stage1[13] <= { 1'b0, mul_ab[26] } + { mul_ab[27], 1'b0 };
-      mul_stage1[14] <= { 1'b0, mul_ab[28] } + { mul_ab[29], 1'b0 };
-      mul_stage1[15] <= { 1'b0, mul_ab[30] } + { mul_ab[31], 1'b0 };
+    end else if(!int_mul_stole) begin
+      mul_stage2[0] <= { 1'b0, mul_ab[0] } + { mul_ab[1], 1'b0 };
+      mul_stage2[1] <= { 1'b0, mul_ab[2] } + { mul_ab[3], 1'b0 };
+      mul_stage2[2] <= { 1'b0, mul_ab[4] } + { mul_ab[5], 1'b0 };
+      mul_stage2[3] <= { 1'b0, mul_ab[6] } + { mul_ab[7], 1'b0 };
+      mul_stage2[4] <= { 1'b0, mul_ab[8] } + { mul_ab[9], 1'b0 };
+      mul_stage2[5] <= { 1'b0, mul_ab[10] } + { mul_ab[11], 1'b0 };
+      mul_stage2[6] <= { 1'b0, mul_ab[12] } + { mul_ab[13], 1'b0 };
+      mul_stage2[7] <= { 1'b0, mul_ab[14] } + { mul_ab[15], 1'b0 };
+      mul_stage2[8] <= { 1'b0, mul_ab[16] } + { mul_ab[17], 1'b0 };
+      mul_stage2[9] <= { 1'b0, mul_ab[18] } + { mul_ab[19], 1'b0 };
+      mul_stage2[10] <= { 1'b0, mul_ab[20] } + { mul_ab[21], 1'b0 };
+      mul_stage2[11] <= { 1'b0, mul_ab[22] } + { mul_ab[23], 1'b0 };
+      mul_stage2[12] <= { 1'b0, mul_ab[24] } + { mul_ab[25], 1'b0 };
+      mul_stage2[13] <= { 1'b0, mul_ab[26] } + { mul_ab[27], 1'b0 };
+      mul_stage2[14] <= { 1'b0, mul_ab[28] } + { mul_ab[29], 1'b0 };
+      mul_stage2[15] <= { 1'b0, mul_ab[30] } + { mul_ab[31], 1'b0 };
+      mul_trace_op[2] <= mul_trace_op[1];
       mul_trace_valid[2] <= mul_trace_valid[1];
     end
   end
@@ -145,15 +152,16 @@ module core_mul (
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[3] <= 0;
-    end else if(!int_mul_r_tvalid) begin
-      mul_stage2[0] <= { 2'b0, mul_stage1[0] } + { mul_stage1[1], 2'b0 };
-      mul_stage2[1] <= { 2'b0, mul_stage1[2] } + { mul_stage1[3], 2'b0 };
-      mul_stage2[2] <= { 2'b0, mul_stage1[4] } + { mul_stage1[5], 2'b0 };
-      mul_stage2[3] <= { 2'b0, mul_stage1[6] } + { mul_stage1[7], 2'b0 };
-      mul_stage2[4] <= { 2'b0, mul_stage1[8] } + { mul_stage1[9], 2'b0 };
-      mul_stage2[5] <= { 2'b0, mul_stage1[10] } + { mul_stage1[11], 2'b0 };
-      mul_stage2[6] <= { 2'b0, mul_stage1[12] } + { mul_stage1[13], 2'b0 };
-      mul_stage2[7] <= { 2'b0, mul_stage1[14] } + { mul_stage1[15], 2'b0 };
+    end else if(!int_mul_stole) begin
+      mul_stage3[0] <= { 2'b0, mul_stage2[0] } + { mul_stage2[1], 2'b0 };
+      mul_stage3[1] <= { 2'b0, mul_stage2[2] } + { mul_stage2[3], 2'b0 };
+      mul_stage3[2] <= { 2'b0, mul_stage2[4] } + { mul_stage2[5], 2'b0 };
+      mul_stage3[3] <= { 2'b0, mul_stage2[6] } + { mul_stage2[7], 2'b0 };
+      mul_stage3[4] <= { 2'b0, mul_stage2[8] } + { mul_stage2[9], 2'b0 };
+      mul_stage3[5] <= { 2'b0, mul_stage2[10] } + { mul_stage2[11], 2'b0 };
+      mul_stage3[6] <= { 2'b0, mul_stage2[12] } + { mul_stage2[13], 2'b0 };
+      mul_stage3[7] <= { 2'b0, mul_stage2[14] } + { mul_stage2[15], 2'b0 };
+      mul_trace_op[3] <= mul_trace_op[2];
       mul_trace_valid[3] <= mul_trace_valid[2];
     end
   end
@@ -161,11 +169,12 @@ module core_mul (
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[4] <= 0;
-    end else if(!int_mul_r_tvalid) begin
-      mul_stage3[0] <= { 4'b0, mul_stage2[0] } + { mul_stage2[1], 4'b0 };
-      mul_stage3[1] <= { 4'b0, mul_stage2[2] } + { mul_stage2[3], 4'b0 };
-      mul_stage3[2] <= { 4'b0, mul_stage2[4] } + { mul_stage2[5], 4'b0 };
-      mul_stage3[3] <= { 4'b0, mul_stage2[6] } + { mul_stage2[7], 4'b0 };
+    end else if(!int_mul_stole) begin
+      mul_stage4[0] <= { 4'b0, mul_stage3[0] } + { mul_stage3[1], 4'b0 };
+      mul_stage4[1] <= { 4'b0, mul_stage3[2] } + { mul_stage3[3], 4'b0 };
+      mul_stage4[2] <= { 4'b0, mul_stage3[4] } + { mul_stage3[5], 4'b0 };
+      mul_stage4[3] <= { 4'b0, mul_stage3[6] } + { mul_stage3[7], 4'b0 };
+      mul_trace_op[4] <= mul_trace_op[3];
       mul_trace_valid[4] <= mul_trace_valid[3];
     end
   end
@@ -173,9 +182,10 @@ module core_mul (
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[5] <= 0;
-    end else if(!int_mul_r_tvalid) begin
-      mul_stage4[0] <= { 8'b0, mul_stage3[0] } + { mul_stage3[1], 8'b0 };
-      mul_stage4[1] <= { 8'b0, mul_stage3[2] } + { mul_stage3[3], 8'b0 };
+    end else if(!int_mul_stole) begin
+      mul_stage5[0] <= { 8'b0, mul_stage4[0] } + { mul_stage4[1], 8'b0 };
+      mul_stage5[1] <= { 8'b0, mul_stage4[2] } + { mul_stage4[3], 8'b0 };
+      mul_trace_op[5] <= mul_trace_op[4];
       mul_trace_valid[5] <= mul_trace_valid[4];
     end
   end
@@ -183,9 +193,10 @@ module core_mul (
   always @(posedge CLK) begin
     if(!RST_N) begin
       mul_trace_valid[6] <= 0;
-    end else if(!int_mul_r_tvalid) begin
-      mul_stage5 <= { 16'b0, mul_stage4[0] } + { mul_stage4[1], 16'b0 };
-      last_in_mul_and_mulh <= { 16'b0, mul_stage4[0] } + { mul_stage4[1], 16'b0 } + add_const_in_mul_and_mulh;
+    end else if(!int_mul_stole) begin
+      mul_stage6 <= { 16'b0, mul_stage5[0] } + { mul_stage5[1], 16'b0 };
+      last_in_mul_and_mulh <= { 16'b0, mul_stage5[0] } + { mul_stage5[1], 16'b0 } + add_const_in_mul_and_mulh;
+      mul_trace_op[6] <= mul_trace_op[5];
       mul_trace_valid[6] <= mul_trace_valid[5];
     end
   end
@@ -194,9 +205,11 @@ module core_mul (
     if(!RST_N) begin
       int_mul_r_tvalid <= 0;
     end else begin
-      int_mul_r_tdata <=  (int_mul_op_tdata == I_MUL) ? last_in_mul_and_mulh[31:0] :
-                          (int_mul_op_tdata == I_MULH) ? last_in_mul_and_mulh[63:32] :
-                          mul_stage5[63:32];
+      if(!int_mul_stole) begin
+        int_mul_r_tdata <=  (mul_trace_op[6] == I_MUL) ? last_in_mul_and_mulh[31:0] :
+                            (mul_trace_op[6] == I_MULH) ? last_in_mul_and_mulh[63:32] :
+                            mul_stage6[63:32];
+      end
       int_mul_r_tvalid <= (int_mul_r_tready && int_mul_r_tvalid) ? 0 :
                           (int_mul_r_tvalid | mul_trace_valid[6]);
     end
