@@ -349,10 +349,46 @@ void exec_main(param_t* param) {
       if(rd != 0) param->reg[rd] = param->reg[rs1] * param->reg[rs2];
       pc_inclement(param);
       return;
+    case MULH:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("mulh %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = ((long long)param->reg[rs1] * (long long)param->reg[rs2]) >> 32;
+      pc_inclement(param);
+      return;
+    case MULHSU:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("mulhsu %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = ((long long)param->reg[rs1] * (long long)((unsigned)param->reg[rs2])) >> 32;
+      pc_inclement(param);
+      return;
+    case MULHU:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("mulhu %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = ((long long)((unsigned)param->reg[rs1]) * (long long)((unsigned)param->reg[rs2])) >> 32;
+      pc_inclement(param);
+      return;
     case DIV:
       set_r_type(param, &rd, &rs1, &rs2);
       if(param->step) printf("div %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
       if(rd != 0) param->reg[rd] = param->reg[rs1] / param->reg[rs2];
+      pc_inclement(param);
+      return;
+    case DIVU:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("divu %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = (unsigned)param->reg[rs1] / (unsigned)param->reg[rs2];
+      pc_inclement(param);
+      return;
+    case REM:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("rem %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = param->reg[rs1] % param->reg[rs2];
+      pc_inclement(param);
+      return;
+    case REMU:
+      set_r_type(param, &rd, &rs1, &rs2);
+      if(param->step) printf("remu %%r%d, %%r%d, %%r%d\n", rd, rs1, rs2);
+      if(rd != 0) param->reg[rd] = (unsigned)param->reg[rs1] % (unsigned)param->reg[rs2];
       pc_inclement(param);
       return;
     case FLW:

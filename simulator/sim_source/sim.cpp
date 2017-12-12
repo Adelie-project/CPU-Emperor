@@ -25,7 +25,6 @@ void run_wave(param_t* param);
 void run_step(param_t* param);
 void print_wave(int mode);
 void print_standard_reg(param_t* param);
-void print_call_time(param_t* param);
 
 void sigsegv_handler(int signo) {
   printf("\n\nerror: segmentation fault\n\n");
@@ -125,7 +124,7 @@ inline void preprocess_of_run(param_t* param) {
       else print_standard_reg(param);
       printf("\n\nreach end of file.\n");
       printf("cnt = %lld, max_mem_no = %u\n", param->cnt, param->max_mem_no);
-      print_call_time(param);
+      // print_call_time(param);
       fclose(param->fp);
       exit(EXIT_SUCCESS);
     }
@@ -142,7 +141,7 @@ inline void postprocess_of_run(param_t* param) {
     else print_standard_reg(param);
     printf("\n\nprogram infinitely loops at pc %d, simulation stops.\n", param->pc);
     printf("cnt = %lld, max_mem_no = %u\n", param->cnt, param->max_mem_no);
-    print_call_time(param);
+    // print_call_time(param);
     fclose(param->fp);
     exit(EXIT_SUCCESS);
   }
@@ -308,74 +307,6 @@ void print_wave(int mode) {
       }
       printf("\n");
     }
-  }
-  return;
-}
-
-void print_call_time(param_t* param) {
-  vector<pair<unsigned, string>> mnemonic_cnts = {
-    { param->call_time[LUI], "LUI" },
-    { param->call_time[AUIPC], "AUIPC" },
-    { param->call_time[JAL], "JAL" },
-    { param->call_time[JALR], "JALR" },
-    { param->call_time[BEQ], "BEQ" },
-    { param->call_time[BNE], "BNE" },
-    { param->call_time[BLT], "BLT" },
-    { param->call_time[BGE], "BGE" },
-    { param->call_time[BLTU], "BLTU" },
-    { param->call_time[BGEU], "BGEU" },
-    { param->call_time[LB], "LB" },
-    { param->call_time[LH], "LH" },
-    { param->call_time[LW], "LW" },
-    { param->call_time[LBU], "LBU" },
-    { param->call_time[LHU], "LHU" },
-    { param->call_time[SB], "SB" },
-    { param->call_time[SH], "SH" },
-    { param->call_time[SW], "SW" },
-    { param->call_time[ADDI], "ADDI" },
-    { param->call_time[SLTI], "SLTI" },
-    { param->call_time[SLTIU], "SLTIU" },
-    { param->call_time[XORI], "XORI" },
-    { param->call_time[ORI], "ORI" },
-    { param->call_time[ANDI], "ANDI" },
-    { param->call_time[SLLI], "SLLI" },
-    { param->call_time[SRLI], "SRLI" },
-    { param->call_time[SRAI], "SRAI" },
-    { param->call_time[ADD], "ADD" },
-    { param->call_time[SUB], "SUB" },
-    { param->call_time[SLL], "SLL" },
-    { param->call_time[SLT], "SLT" },
-    { param->call_time[SLTU], "SLTU" },
-    { param->call_time[XOR], "XOR" },
-    { param->call_time[SRL], "SRL" },
-    { param->call_time[SRA], "SRA" },
-    { param->call_time[OR], "OR" },
-    { param->call_time[AND], "AND" },
-    { param->call_time[MUL], "MUL" },
-    { param->call_time[DIV], "DIV" },
-    { param->call_time[FLW], "FLW" },
-    { param->call_time[FSW], "FSW" },
-    { param->call_time[FADDS], "FADDS" },
-    { param->call_time[FSUBS], "FSUBS" },
-    { param->call_time[FMULS], "FMULS" },
-    { param->call_time[FDIVS], "FDIVS" },
-    { param->call_time[FEQS], "FEQS" },
-    { param->call_time[FLTS], "FLTS" },
-    { param->call_time[FLES], "FLES" },
-    { param->call_time[FMVSX], "FMVSX" },
-    { param->call_time[FMVXS], "FMVXS" },
-    { param->call_time[FCVTSW], "FCVTSW" },
-    { param->call_time[FCVTWS], "FCVTWS" },
-    { param->call_time[FSQRTS], "FSQRTS" },
-    { param->call_time[FSGNJXS], "FSGNJXS" },
-    { param->call_time[ROT], "ROT" },
-    { param->call_time[IN], "IN" },
-    { param->call_time[OUT], "OUT" }
-  };
-  sort(mnemonic_cnts.begin(), mnemonic_cnts.end(), greater<pair<unsigned, string>>());
-  Loop(i, mnemonic_cnts.size()) {
-    printf("%10s: %13d times, %lf %%\n",
-      mnemonic_cnts[i].second.c_str(), mnemonic_cnts[i].first, (double)mnemonic_cnts[i].first * 100 /param->cnt);
   }
   return;
 }

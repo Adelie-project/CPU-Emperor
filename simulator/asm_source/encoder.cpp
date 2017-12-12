@@ -15,7 +15,13 @@ unordered_map<string, struct r_factors> r_type = {
   {    "srli", {0b0000000, 0b101, 0b0010011, SHIFT} },
   {    "srai", {0b0100000, 0b101, 0b0010011, SHIFT} },
   {     "mul", {0b0000001, 0b000, 0b0110011, STD} },
+  {    "mulh", {0b0000001, 0b001, 0b0110011, STD} },
+  {  "mulhsu", {0b0000001, 0b010, 0b0110011, STD} },
+  {   "mulhu", {0b0000001, 0b011, 0b0110011, STD} },
   {     "div", {0b0000001, 0b100, 0b0110011, STD} },
+  {    "divu", {0b0000001, 0b101, 0b0110011, STD} },
+  {     "rem", {0b0000001, 0b110, 0b0110011, STD} },
+  {    "remu", {0b0000001, 0b111, 0b0110011, STD} },
   {   "fadds", {0b0000000,    RM, 0b1010011, FSTD} },
   {   "fmuls", {0b0001000,    RM, 0b1010011, FSTD} },
   {   "fsubs", {0b0000100,    RM, 0b1010011, FSTD} },
@@ -188,7 +194,6 @@ unsigned encoding(param_t *param) {
     }
     result = (imm & 0x1000) << 19 | (imm & 0x7e0) << 20 | rs2 << 20 | rs1 << 15
            | (itr_i->second).funct3 << 12 | (imm & 0x1e) << 7 | (imm & 0x800) >> 4 | (itr_i->second).opcode;
-
   }
   //U-type
   else if ((itr_u = u_type.find(param->buf[0])) != u_type.end()) {

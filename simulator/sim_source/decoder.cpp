@@ -186,14 +186,17 @@ void decode_all(param_t* param) {
             break;
           case 0x1000: //SLL?
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = SLL;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = MULH;
             else print_unknown_inst(param, 862, i, inst);
             break;
           case 0x2000: //SLT
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = SLT;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = MULHSU;
             else print_unknown_inst(param, 863, i, inst);
             break;
           case 0x3000: //SLTU
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = SLTU;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = MULHU;
             else print_unknown_inst(param, 865, i, inst);
             break;
           case 0x4000: //XOR or DIV?
@@ -204,13 +207,17 @@ void decode_all(param_t* param) {
           case 0x5000: //SRL or SRA?
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = SRL;
             else if (inst >> 25 == 0b0100000) (param->decoded)[i][0] = SRA;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = DIVU;
             else print_unknown_inst(param, 867, i, inst);
+            break;
           case 0x6000: //OR
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = OR;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = REM;
             else print_unknown_inst(param, 868, i, inst);
             break;
           case 0x7000: //AND
             if (inst >> 25 == 0b0000000) (param->decoded)[i][0] = AND;
+            else if (inst >> 25 == 0b0000001) (param->decoded)[i][0] = REMU;
             else print_unknown_inst(param, 869, i, inst);
             break;
           default:
