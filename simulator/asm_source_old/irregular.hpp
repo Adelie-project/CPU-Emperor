@@ -2,6 +2,7 @@
 #define IRREGULAR_HPP
 
 #include <sstream>
+#include "asm_globalparam.hpp"
 #include "encoder.hpp"
 
 #define Loop(i, n) for(int i = 0; i < (int)n; i++)

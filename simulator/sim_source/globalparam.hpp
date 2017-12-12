@@ -18,6 +18,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <map>
+#include <unordered_map>
 #include <set>
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,5 +87,13 @@ void init_param(param_t* param);
 void exit_message(param_t* param);
 
 void print_standard_reg(param_t* param);
+
+extern unordered_map<string, unsigned> x_regn;
+
+extern vector<string> x_reg;
+
+extern unordered_map<string, unsigned> f_regn;
+
+extern vector<string> f_reg;
 
 #endif

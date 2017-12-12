@@ -24,6 +24,11 @@
 #include "encoder.hpp"
 #include "irregular.hpp"
 using namespace std;
+#define Loop(i, n) for(int i = 0; i < (int)n; i++)
+#define Loop1(i, n) for(int i = 1; i <= (int)n; i++)
+#define Loopr(i, n) for(int i = (int)n - 1; i >= 0; i--)
+#define Loopr1(i, n) for(int i = (int)n; i >= 1; i--)
+#define bitmanip(m,val) static_cast<bitset<(int)m>>(val)
 
 vector<bool> opt_flags(8, false); //オプションフラグ
 

@@ -80,53 +80,47 @@ unordered_map<string, struct u_factors> uj_type = {
 };
 
 const char reg_pattern[16][4] = {
-  { 'x', 'x', 'x', 'x' }, //STD
-  { 'x', 'x', 'x', 'x' }, //SHIFT
+  { 'r', 'r', 'r', 'r' }, //STD
+  { 'r', 'r', 'r', 'r' }, //SHIFT
   { 'f', 'f', 'f', 'f' }, //FSTD
-  { 'x', 'f', 'f', 'x' }, //FCMP
-  { 'f', 'x', 'x', 'x' }, //FL
-  { 'x', 'f', 'x', 'x' }, //FS
-  { 'f', 'x', 'x', 'x' }, //FSX
-  { 'x', 'f', 'x', 'x' }, //FXS
+  { 'r', 'f', 'f', 'r' }, //FCMP
+  { 'f', 'r', 'r', 'r' }, //FL
+  { 'r', 'f', 'r', 'r' }, //FS
+  { 'f', 'r', 'r', 'r' }, //FSX
+  { 'r', 'f', 'r', 'r' }, //FXS
   { 'f', 'f', 'f', 'f' }, //FUNARY
-  { 'x', 'x', 'x', 'x' }, //UNARY
-  { 'x', 'x', 'x', 'x' }, //IN
-  { 'x', 'x', 'x', 'x' }  //OUT
+  { 'r', 'r', 'r', 'r' }, //UNARY
+  { 'r', 'r', 'r', 'r' }, //IN
+  { 'r', 'r', 'r', 'r' }  //OUT
 };
 
 unsigned set_regn(param_t *param, unsigned k, proc_t proc) {
-  if (reg_pattern[proc][k - 1] == 'x') {
-    unordered_map<string, unsigned>::iterator itr_xrn;
-    if ((itr_xrn = x_regn.find(param->buf[k])) != x_regn.end()) return itr_xrn->second;
-    else { printf("\x1b[31merror\x1b[39m: inappropriate integer register name of \"%s\" in line %d\n", param->buf[k].c_str(), param->lineno); exit(EXIT_FAILURE); }
-	}
-  else if (reg_pattern[proc][k - 1] == 'f') {
-    unordered_map<string, unsigned>::iterator itr_frn;
-    if ((itr_frn = f_regn.find(param->buf[k])) != f_regn.end()) return itr_frn->second;
-    else { printf("\x1b[31merror\x1b[39m: inappropriate integer register name of \"%s\" in line %d\n", param->buf[k].c_str(), param->lineno); exit(EXIT_FAILURE); }
+  if (param->buf[k][0] != '%') {
+    printf("\x1b[31merror\x1b[39m: syntax error in line %d: register name should begin with '%%'.\n", param->lineno); exit(EXIT_FAILURE);
   }
-  else { printf("program error\n"); exit(EXIT_FAILURE); }
+  if (param->buf[k][1] != reg_pattern[proc][k-1]) {
+    printf("\x1b[31merror\x1b[39m: syntax error in line %d: %dth argument should be a %s register.\n"
+      , param->lineno, k + 1, reg_pattern[proc][k-1] == 'r' ? "integer" : "floating point");
+    exit(EXIT_FAILURE);
+  }
+  int regn = strtoul((param->buf[k]).substr(2,(param->buf[k]).size()-1).c_str(), NULL, 0);
+  if (regn >> 5) printf("\x1b[35mwarning\x1b[39m: register number is out of range (0~31) in line %d\n", param->lineno);
+  return regn;
 }
 
 inline int set_imm(param_t *param, unsigned k, int digit) {
+  if(param->buf[k][0] != '$') {
+    printf("\x1b[31merror\x1b[39m: syntax error in line %d: immediate should begin with '$'.\n", param->lineno); exit(EXIT_FAILURE);
+  }
   int imm;
-  char *strtol_endptr;
-  if(param->buf[k].size() > 2 && param->buf[k][0] == '0' && param->buf[k][1] == 'x') {
+  if(param->buf[k].size() > 2 && param->buf[k][1] == '0' && param->buf[k][2] == 'x') {
     //16進数
-    imm = strtol((param->buf[k]).substr(0, (param->buf[k]).size()).c_str(), &strtol_endptr, 16);
-    if (*strtol_endptr != '\0') {
-      printf("\x1b[31merror\x1b[39m: invalid immediate \"%s\" in line %d\n", param->buf[k].c_str(), param->lineno); exit(EXIT_FAILURE);
-    }
-    if (digit < 32 && (unsigned)imm >> digit) {
-      printf("\x1b[35mwarning\x1b[39m: immediate is out of range (%d bit) in line %d\n", digit, param->lineno);
-    }
+    imm = strtol((param->buf[k]).substr(1, (param->buf[k]).size()-1).c_str(), NULL, 16);
+    if (digit < 32 && (unsigned)imm >> digit) printf("\x1b[35mwarning\x1b[39m: immediate is out of range (%d bit) in line %d\n", digit, param->lineno);
   }
   else {
     //それ以外は10進数とみなす
-    imm = strtol((param->buf[k]).substr(0, (param->buf[k]).size()).c_str(), &strtol_endptr, 10);
-    if (*strtol_endptr != '\0') {
-      printf("\x1b[31merror\x1b[39m: invalid immediate \"%s\" in line %d\n", param->buf[k].c_str(), param->lineno); exit(EXIT_FAILURE);
-    }
+    imm = strtol((param->buf[k]).substr(1, (param->buf[k]).size()-1).c_str(), NULL, 10);
     if (digit != 32 && (imm >= (1 << (digit - 1)) || imm < -1 * (1 << (digit - 1)))) {
       printf("\x1b[35mwarning\x1b[39m: immediate %d is out of range (%d bit) in line %d\n", imm, digit, param->lineno);
     }
@@ -135,12 +129,11 @@ inline int set_imm(param_t *param, unsigned k, int digit) {
 }
 
 inline int set_shamt(param_t *param, unsigned k) {
-  char *strtoul_endptr;
-  unsigned shamt = strtoul((param->buf[k]).substr(0,param->buf[k].size()).c_str(), &strtoul_endptr, 0);
-  if (errno == EINVAL) printf("\x1b[35mwarning\x1b[39m: improper representation of shamt in line %d\n", param->lineno);
-  if (*strtoul_endptr != '\0') {
-    printf("\x1b[31merror\x1b[39m: invalid immediate \"%s\" in line %d\n", param->buf[k].c_str(), param->lineno); exit(EXIT_FAILURE);
+  if(param->buf[k][0] != '$') {
+    printf("\x1b[31merror\x1b[39m: syntax error in line %d: shamt should begin with '%%'.\n", param->lineno); exit(EXIT_FAILURE);
   }
+  unsigned shamt = strtoul((param->buf[k]).substr(1,param->buf[k].size()-1).c_str(), NULL, 0);
+  if (errno == EINVAL) printf("\x1b[35mwarning\x1b[39m: improper representation of shamt in line %d\n", param->lineno);
   if (shamt >> 5) printf("\x1b[35mwarning\x1b[39m: shamt is out of range (5 bit) in line %d\n", param->lineno);
   return shamt;
 }
@@ -156,7 +149,6 @@ unsigned encoding(param_t *param) {
   //R-type
   if ((itr_r = r_type.find(param->buf[0])) != r_type.end()) {
     proc_t proc = (itr_r->second).proc;
-    if (param->buf.size() != 4) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rd = set_regn(param, 1, proc);
     rs1 = set_regn(param, 2, proc);
     if (proc == SHIFT) rs2 = set_shamt(param, 3);
@@ -168,10 +160,6 @@ unsigned encoding(param_t *param) {
   //I-type
   else if ((itr_i = i_type.find(param->buf[0])) != i_type.end()) {
     proc_t proc = (itr_i->second).proc;
-    if (proc == IN) {
-      if (param->buf.size() != 2) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
-    }
-    else if (param->buf.size() != 4) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rd = set_regn(param, 1, proc);
     if (proc == IN) { rs1 = 0; imm = 0; }
     else {
@@ -184,10 +172,6 @@ unsigned encoding(param_t *param) {
   //S-type
   else if ((itr_i = s_type.find(param->buf[0])) != s_type.end()) {
     proc_t proc = (itr_i->second).proc;
-    if (proc == OUT) {
-      if (param->buf.size() != 2) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
-    }
-    else if (param->buf.size() != 4) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rs1 = set_regn(param, 1, proc);
     if (proc == OUT) { rs2 = 0; imm = 0; }
     else {
@@ -200,20 +184,20 @@ unsigned encoding(param_t *param) {
   //SB-type
   else if ((itr_i = sb_type.find(param->buf[0])) != sb_type.end()) {
     proc_t proc = (itr_i->second).proc;
-    if (param->buf.size() != 4) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rs1 = set_regn(param, 1, proc);
     rs2 = set_regn(param, 2, proc);
-    auto itr = (param->labels).find(param->buf[3]);
-    if (itr->second == UINT_MAX) { printf("\x1b[31merror\x1b[39m: register name is used in 3rd argument (here should be a label name or immediate) in line %d\n", param->lineno); exit(EXIT_FAILURE); }
-    else if (itr == (param->labels).end()) imm = set_imm(param, 3, 13);
-    else imm = itr->second - param->pc;
+    if (param->buf[3][0] == '$') imm = set_imm(param, 3, 13);
+    else {
+      auto itr = (param->labels).find(param->buf[3]);
+      if (itr == (param->labels).end()) { printf("\x1b[31merror\x1b[39m: could not find the label: %s used in line %d\n", (param->buf[3]).c_str(), param->lineno); exit(EXIT_FAILURE); }
+      else imm = itr->second - param->pc;
+    }
     result = (imm & 0x1000) << 19 | (imm & 0x7e0) << 20 | rs2 << 20 | rs1 << 15
            | (itr_i->second).funct3 << 12 | (imm & 0x1e) << 7 | (imm & 0x800) >> 4 | (itr_i->second).opcode;
   }
   //U-type
   else if ((itr_u = u_type.find(param->buf[0])) != u_type.end()) {
     proc_t proc = (itr_u->second).proc;
-    if (param->buf.size() != 3) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rd = set_regn(param, 1, proc);
     imm = set_imm(param, 2, 32);
     if (imm & 0xfff) printf("\x1b[35mwarning\x1b[39m: lower 12 bits of immediate will be ignored in line %d\n", param->lineno);
@@ -222,12 +206,13 @@ unsigned encoding(param_t *param) {
   //UJ-type
   else if ((itr_u = uj_type.find(param->buf[0])) != uj_type.end()) {
     proc_t proc = (itr_u->second).proc;
-    if (param->buf.size() != 3) { printf("\x1b[31merror\x1b[39m: the number of arguments is imappropriate in line %d\n", param->lineno); exit(EXIT_FAILURE); }
     rd = set_regn(param, 1, proc);
-    auto itr = (param->labels).find(param->buf[2]);
-    if (itr->second == UINT_MAX) { printf("\x1b[31merror\x1b[39m: register name is used in 3rd argument (here should be a label name or immediate) in line %d\n", param->lineno); exit(EXIT_FAILURE); }
-    else if (itr == (param->labels).end()) imm = set_imm(param, 2, 21);
-    else imm = itr->second - param->pc;
+    if (param->buf[2][0] == '$') imm = set_imm(param, 2, 21);
+    else {
+      auto itr = (param->labels).find(param->buf[2]);
+      if (itr == (param->labels).end()) { printf("\x1b[31merror\x1b[39m: could not find the label: %s used in line %d\n", (param->buf[2]).c_str(), param->lineno); exit(EXIT_FAILURE); }
+      else imm = itr->second - param->pc;
+    }
     result = (imm & 0x100000) << 11 | (imm & 0x7fe) << 20 | (imm & 0x800) << 9
            | (imm & 0xff000) | rd << 7 | (itr_u->second).opcode;
   }

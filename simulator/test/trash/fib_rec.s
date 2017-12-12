@@ -1,46 +1,43 @@
 main:
-  lui sp, 0x00008000 ; SP、スタックとして32KB*8B=256KBを確保
-  addi sp, sp, -64 ; SP -= 64
-  addi gp, sp, 64  ; FP = SP + 64, main()のフレームの出来上がり
-  lui s1, 0
-  addi s1, s1, 2   ; const int 1
-  lui t0, 0
-  addi t0, t0, 38  ; fib_rec(35) を呼びたい
-  jal ra, fib_rec   ; r1 = 7 * pc_interval
-  jal ra, finish
+  set %r2, $0x00008000 ; SP、スタックとして32KB*8B=256KBを確保
+  addi %r2, %r2, $-64 ; SP -= 64
+  addi %r3, %r2, $64  ; FP = SP + 64, main()のフレームの出来上がり
+  set %r9, $2   ; const int 1
+  set %r5, $10  ; fib_rec(35) を呼びたい
+  jal %r1, fib_rec   ; r1 = 7 * pc_interval
+  jal %r1, finish
 fib_rec:
-  addi sp, sp, -64 ; SP -= 64
-  sw sp, ra, 16    ; LR退避
-  sw sp, gp, 20    ; FP退避
-  addi gp, sp, 64  ; FP = SP + 64
-  sw sp, t0, 0     ; 第一引数
-  bge s1, t0, fib_rec_bge1   ; if (1 >= x) -> bge1
-  addi t0, t0, -1  ; else { val1 = x - 1;
-  jal ra, fib_rec   ; fib_rec(val1);
-  sw sp, tp, 32    ; a[8] = fib_rec(a);
-  lw t0, sp, 0     ; 第一引数読み戻し
-  addi t0, t0, -2  ; val2 = x - 2;
-  jal ra, fib_rec   ; fib_rec(val2);
-  lw a0, sp, 32   ; r10 = a[8]
-  add tp, a0, tp   ; return fib_rec(val1) + fib_rec(val2)!
+  addi %r2, %r2, $-64 ; SP -= 64
+  sw %r2, %r1, $16    ; LR退避
+  sw %r2, %r3, $20    ; FP退避
+  addi %r3, %r2, $64  ; FP = SP + 64
+  sw %r2, %r5, $0     ; 第一引数
+  bge %r9, %r5, fib_rec_bge1   ; if (1 >= x) -> bge1
+  addi %r5, %r5, $-1  ; else { val1 = x - 1;
+  jal %r1, fib_rec   ; fib_rec(val1);
+  sw %r2, %r4, $32    ; a[8] = fib_rec(a);
+  lw %r5, %r2, $0     ; 第一引数読み戻し
+  addi %r5, %r5, $-2  ; val2 = x - 2;
+  jal %r1, fib_rec   ; fib_rec(val2);
+  lw %r10, %r2, $32   ; r10 = a[8]
+  add %r4, %r10, %r4   ; return fib_rec(val1) + fib_rec(val2)!
 fib_rec_ret:
-  lw ra, sp, 16    ; 退避したLRの読み戻し
-  lw gp, sp, 20    ; 退避したFPの読み戻し
-  addi sp, sp, 64 ; SP += 64
-  jalr ra, ra, 0   ; 呼び出し元の関数に戻る
+  lw %r1, %r2, $16    ; 退避したLRの読み戻し
+  lw %r3, %r2, $20    ; 退避したFPの読み戻し
+  addi %r2, %r2, $64 ; SP += 64
+  jalr %r1, %r1, $0   ; 呼び出し元の関数に戻る
 fib_rec_bge1:
-  lui tp, 0
-  addi tp, tp, 1   ; if (x == 0 || x == 1) return 1
-  beq zero, zero, fib_rec_ret ; go back
+  set %r4, $1   ; if (x == 0 || x == 1) return 1
+  beq %r0, %r0, fib_rec_ret ; go back
 finish:
-  out tp
-  srli tp, tp, 8
-  out tp
-  srli tp, tp, 8
-  out tp
-  srli tp, tp, 8
-  out tp
-  jal zero, 0   ; 終了
+  out %r4
+  srli %r4, %r4, $8
+  out %r4
+  srli %r4, %r4, $8
+  out %r4
+  srli %r4, %r4, $8
+  out %r4
+  jal %r0, $0   ; 終了
 
 
 /*
